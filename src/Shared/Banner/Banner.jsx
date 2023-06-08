@@ -6,6 +6,9 @@ import "swiper/css/navigation";
 
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
+import BigButton from "../Button/BigButton/BigButton";
+import { Link } from "react-router-dom";
+import SmallButton from "../Button/SmallButton/SmallButton";
 
 const Banner = () => {
 	return (
@@ -31,7 +34,7 @@ const Banner = () => {
 								>
 									<SwiperSlide>
 										<img
-											src="https://i.pinimg.com/originals/8b/e1/2a/8be12a3eb8c677767940c7bae13a3e6a.jpg"
+											src="https://images.pexels.com/photos/1264210/pexels-photo-1264210.jpeg?auto=compress&cs=tinysrgb&w=600"
 											alt="shoes"
 											loading="lazy"
 											width="100%"
@@ -40,7 +43,17 @@ const Banner = () => {
 									</SwiperSlide>
 									<SwiperSlide>
 										<img
-											src="https://wallpaperaccess.com/full/7422712.jpg"
+											src="https://images.pexels.com/photos/212372/pexels-photo-212372.jpeg?auto=compress&cs=tinysrgb&w=600"
+											alt="shoes"
+											loading="lazy"
+											width="100%"
+											height="640"
+										/>
+									</SwiperSlide>
+
+									<SwiperSlide>
+										<img
+											src="https://images.pexels.com/photos/225157/pexels-photo-225157.jpeg?auto=compress&cs=tinysrgb&w=600"
 											alt="shoes"
 											loading="lazy"
 											width="100%"
@@ -49,7 +62,7 @@ const Banner = () => {
 									</SwiperSlide>
 									<SwiperSlide>
 										<img
-											src="https://wallpaperaccess.com/full/7422697.jpg"
+											src="https://images.pexels.com/photos/403495/pexels-photo-403495.jpeg?auto=compress&cs=tinysrgb&w=600"
 											alt="shoes"
 											loading="lazy"
 											width="100%"
@@ -100,30 +113,20 @@ const Banner = () => {
 						<div className="relative col-span-1">
 							<h1 className="font-bold text-5xl sm:text-6xl md:text-7xl xl:text-8xl dark:text-white">
 								A Look for every{" "}
-								<span className="text-cyan-800 dark:text-cyan-400">mood</span>.
+								<span className="text-lime-800 dark:text-lime-400">mood</span>.
 							</h1>
 							<div className="mt-8 lg:mt-16 space-y-8">
 								<p className="text-gray-700 dark:text-gray-300">
 									Sit amet consectetur adipisicing elit. eligendi tenetur nihil
 									quaerat suscipit, sunt dignissimos.
 								</p>
-								<div className="flex space-x-4 mt-6">
-									<button
-										type="button"
-										title="Start buying"
-										className="w-full py-3 px-6 text-center rounded-full transition duration-300 bg-gray-900 dark:bg-gray-700 hover:bg-cyan-500 active:bg-cyan-600 focus:bg-cyan-800 sm:w-max"
-									>
-										<span className="block text-white text-sm">Shop now</span>
-									</button>
-									<button
-										type="button"
-										title="Start buying"
-										className="w-full py-3 px-6 text-center rounded-full transition border border-gray-200 dark:border-gray-700 sm:w-max"
-									>
-										<span className="block text-gray-800 text-sm dark:text-white">
-											View store
-										</span>
-									</button>
+								<div className="flex items-center  space-x-4 mt-6">
+									<Link to="/">
+										<BigButton></BigButton>
+									</Link>
+									<Link to="/">
+										<SmallButton></SmallButton>
+									</Link>
 								</div>
 							</div>
 						</div>

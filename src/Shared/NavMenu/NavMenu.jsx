@@ -27,7 +27,7 @@ const NavMenu = () => {
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex items-center justify-between h-16">
 						<div className="flex items-center">
-							<div className="text-2xl  text-[#C26DBC] hidden lg:block from-current font-poppins ">
+							<div className="text-2xl  text-[#57D657] hidden lg:block from-current font-poppins ">
 								<span className="flex justify-center h-8  items-center font-bold">
 									<img
 										src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxhvtSBGg7erRpwPLpUSZcO6P5XOekHttUNA&usqp=CAU"
@@ -45,11 +45,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#C26DBC",
+											color: isActive ? "#c09da9" : "#57D657",
 										};
 									}}
 									to="/mytoys"
-									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									My Toys
@@ -58,11 +58,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#C26DBC",
+											color: isActive ? "#c09da9" : "#57D657",
 										};
 									}}
 									to="/addtoys"
-									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									Add A Toy
@@ -72,11 +72,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#C26DBC",
+											color: isActive ? "#c09da9" : "#57D657",
 										};
 									}}
 									to="/"
-									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#c09da9] active:text-[#c09da9]"
+									className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#c09da9] active:text-[#c09da9]"
 									activeClassName="border-current text-red-700"
 								>
 									Home
@@ -85,11 +85,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#C26DBC",
+											color: isActive ? "#c09da9" : "#57D657",
 										};
 									}}
 									to="/blog"
-									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									Blog
@@ -98,11 +98,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#C26DBC",
+											color: isActive ? "#c09da9" : "#57D657",
 										};
 									}}
 									to="/alltoys"
-									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									All Toys
@@ -114,11 +114,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#C26DBC",
+											color: isActive ? "#c09da9" : "#57D657",
 										};
 									}}
 									to="/"
-									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#c09da9] active:text-[#c09da9]"
+									className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#c09da9] active:text-[#c09da9]"
 									activeClassName="border-current text-red-700"
 								>
 									Home
@@ -127,11 +127,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#C26DBC",
+											color: isActive ? "#c09da9" : "#57D657",
 										};
 									}}
 									to="/blog"
-									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									Blog
@@ -140,11 +140,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#C26DBC",
+											color: isActive ? "#c09da9" : "#57D657",
 										};
 									}}
 									to="/alltoys"
-									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									All Toys
@@ -194,14 +194,14 @@ const NavMenu = () => {
 										</Link>
 									</button>
 
-									<Link className="py-2  mx-1 px-4 bg-[#C26DBC] text-white font-semibold rounded-lg shadow-md hover:bg-[#c09da9] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+									<Link className="py-2  mx-1 px-4 bg-gradient-to-r from-lime-700 via-lime-50 to-lime-700 text-black font-semibold rounded-lg shadow-md hover:bg-[#c09da9] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
 										<button className="">LogOut</button>
 										{/* onClick={logOut} */}
 									</Link>
 								</div>
 								{/* ) : ( */}
 								<Link
-									className="py-2 mx-1 px-4 bg-[#C26DBC] text-white  font-semibold rounded-lg shadow-md hover:bg-[#c09da9] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+									className="py-2 mx-1 px-4 bg-gradient-to-r from-lime-700 via-lime-50 to-lime-700 text-black font-semibold rounded-lg shadow-md hover:bg--gradient-to-t  focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
 									to="/login"
 								>
 									<button>Login</button>
@@ -276,11 +276,11 @@ const NavMenu = () => {
 										style={({ isActive }) => {
 											return {
 												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#C26DBC",
+												color: isActive ? "#c09da9" : "#57D657",
 											};
 										}}
 										to="/"
-										className="text-[#C26DBC] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-red-700 active:text-red-700"
+										className="text-[#57D657] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-red-700 active:text-red-700"
 										activeClassName="border-current text-red-700"
 									>
 										Home
@@ -289,11 +289,11 @@ const NavMenu = () => {
 										style={({ isActive }) => {
 											return {
 												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#C26DBC",
+												color: isActive ? "#c09da9" : "#57D657",
 											};
 										}}
 										to="/chef"
-										className="text-[#C26DBC] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-red-700 active:text-red-700"
+										className="text-[#57D657] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-red-700 active:text-red-700"
 										activeClassName="border-current text-red-700"
 									>
 										All Chef
@@ -302,11 +302,11 @@ const NavMenu = () => {
 										style={({ isActive }) => {
 											return {
 												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#C26DBC",
+												color: isActive ? "#c09da9" : "#57D657",
 											};
 										}}
 										to="/restaurant"
-										className="text-[#C26DBC] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-red-700 active:text-red-700"
+										className="text-[#57D657] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-red-700 active:text-red-700"
 										activeClassName="border-current text-red-700"
 									>
 										Restaurant
@@ -315,11 +315,11 @@ const NavMenu = () => {
 										style={({ isActive }) => {
 											return {
 												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#C26DBC",
+												color: isActive ? "#c09da9" : "#57D657",
 											};
 										}}
 										to="/blog"
-										className="text-[#C26DBC] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-red-700 active:text-red-700"
+										className="text-[#57D657] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-red-700 active:text-red-700"
 										activeClassName="border-current text-red-700"
 									>
 										Blog
@@ -351,13 +351,13 @@ const NavMenu = () => {
 													</div>
 												</Link>
 											</button>
-											<Link className="py-2  mx-1 px-4 bg-[#C26DBC] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+											<Link className="py-2  mx-1 px-4 bg-[#57D657] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
 												<button className="">LogOut</button>
 											</Link>
 										</div>
 										{/* ) : ( */}
 										<Link
-											className="py-2 mx-1 px-4 bg-[#C26DBC] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+											className="py-2 mx-1 px-4 bg-[#57D657] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
 											to="/login"
 										>
 											<button>Login</button>
@@ -393,13 +393,13 @@ const NavMenu = () => {
 														</div>
 													</Link>
 												</button>
-												<Link className="py-2  mx-1 px-4 bg-[#C26DBC] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+												<Link className="py-2  mx-1 px-4 bg-[#57D657] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
 													<button className="">LogOut</button>
 												</Link>
 											</div>
 
 											<Link
-												className="py-2 mx-1 px-4 bg-[#C26DBC] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+												className="py-2 mx-1 px-4 bg-[#57D657] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
 												to="/login"
 											>
 												<button>Login</button>
