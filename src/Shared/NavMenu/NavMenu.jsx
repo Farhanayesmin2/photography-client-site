@@ -1,23 +1,29 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { FaSun, FaMoon } from "react-icons/fa";
 
 const NavMenu = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	// const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+	const [isDarkMode, setIsDarkMode] = useState(false);
+	useEffect(() => {
+		const root = window.document.documentElement;
+		const body = window.document.body;
+		if (isDarkMode) {
+			root.classList.add("dark");
+			body.style.backgroundColor = "#1f2937";
+		} else {
+			root.classList.remove("dark");
+			body.style.backgroundColor = "#fff";
+		}
+	}, [isDarkMode]);
 
-	// // Toggle mobile menu
-	// const toggleMobileMenu = () => {
-	// 	setIsMobileMenuOpen(!isMobileMenuOpen);
-	// };
-
-	// // Close mobile menu
-	// const closeMobileMenu = () => {
-	// 	setIsMobileMenuOpen(false);
-	// };
+	const handleToggle = () => {
+		setIsDarkMode(!isDarkMode);
+	};
 
 	return (
 		<div>
-			<nav className=" bg-white shadow-md font-sans w-full">
+			<nav className="  shadow-md font-sans w-full">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex items-center justify-between h-16">
 						<div className="flex items-center">
@@ -27,7 +33,7 @@ const NavMenu = () => {
 										src="https://img.freepik.com/premium-vector/logo-desaign-baby-doll-vector_727263-3.jpg?w=2000"
 										className="flex justify-center h-16 animate-pulse  items-center font-bold"
 									/>
-									Baby Doll{" "}
+									School Photography{" "}
 								</span>
 							</div>
 						</div>
@@ -145,6 +151,16 @@ const NavMenu = () => {
 								</NavLink>
 								{/* </>
 								)} */}
+								<div className="dark-theme-toggle">
+									<button
+										className={`toggle-button ${
+											isDarkMode ? "text-yellow-300" : "text-gray-700"
+										}`}
+										onClick={handleToggle}
+									>
+										{isDarkMode ? <FaSun /> : <FaMoon />}
+									</button>
+								</div>
 							</div>
 						</div>
 
