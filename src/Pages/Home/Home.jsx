@@ -1,12 +1,9 @@
-import BigButton from "../../Shared/Button/BigButton/BigButton";
-import SmallButton from "../../Shared/Button/SmallButton/SmallButton";
+import Banner from "../../Shared/Banner/Banner";
 
 const Home = () => {
 	return (
 		<div>
-			<h1 className="text-[#050A30] text-2xl">This is home.</h1>
-			<SmallButton></SmallButton>
-			<BigButton></BigButton>
+			<Banner></Banner>
 		</div>
 	);
 };

@@ -30,20 +30,59 @@ const Footer = () => {
 						<div className="grid grid-cols-8 gap-6 md:gap-0">
 							<div className="col-span-8 border-r border-gray-500 dark:border-gray-800 md:col-span-2 lg:col-span-3">
 								<div className="flex items-center justify-between gap-6 border-b border-white dark:border-gray-800 py-6 md:block md:space-y-6 md:border-none md:py-0">
-									<img
-										src="images/logo.svg"
-										alt="logo tailus"
-										width="100"
-										height="42"
-										className="w-32 dark:brightness-200 dark:grayscale"
-									/>
+									<div className="flex ps-0 justify-center items-center">
+										<img
+											src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxhvtSBGg7erRpwPLpUSZcO6P5XOekHttUNA&usqp=CAU"
+											className="flex mr-5 justify-center h-16 rounded-full  shadow-black shadow-2xl  items-center font-bold"
+										/>
+										<span className="  text-lg  lg:mr-14  font-bold">
+											School Photography{" "}
+										</span>
+									</div>
+
 									<div className="flex gap-6">
-										<FaFacebookSquare className="w-8 h-8   text-blue-700 bg-white"></FaFacebookSquare>
-										<FaFacebookMessenger className="w-8 h-8  rounded-3xl text-sky-700 bg-white"></FaFacebookMessenger>
-										<FaYoutubeSquare className="w-8 h-8    text-red-700 bg-white"></FaYoutubeSquare>
-										<FaLinkedinIn className="w-8 h-8  rounded-lg text-white bg-blue-800"></FaLinkedinIn>
-										<FaTwitterSquare className="w-8 h-8  rounded-xl text-sky-500 bg-white"></FaTwitterSquare>
-										<FaInstagramSquare className="w-8 h-8 rounded-xl white text-rose-700 bg-white"></FaInstagramSquare>
+										<a
+											href="https://www.facebook.com"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<FaFacebookSquare className="w-8 h-8 text-blue-700 bg-white" />
+										</a>
+										<a
+											href="https://www.messenger.com"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<FaFacebookMessenger className="w-8 h-8 rounded-3xl text-sky-700 bg-white" />
+										</a>
+										<a
+											href="https://www.youtube.com"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<FaYoutubeSquare className="w-8 h-8 text-red-700 bg-white" />
+										</a>
+										<a
+											href="https://www.linkedin.com"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<FaLinkedinIn className="w-8 h-8 rounded-lg text-white bg-blue-800" />
+										</a>
+										<a
+											href="https://www.twitter.com"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<FaTwitterSquare className="w-8 h-8 rounded-xl text-sky-500 bg-white" />
+										</a>
+										<a
+											href="https://www.instagram.com"
+											target="_blank"
+											rel="noopener noreferrer"
+										>
+											<FaInstagramSquare className="w-8 h-8 rounded-xl white text-rose-700 bg-white" />
+										</a>
 									</div>
 								</div>
 							</div>
@@ -54,10 +93,10 @@ const Footer = () => {
 											Our Mission
 										</h6>
 										<h1 className="  items-justify ">
-											Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-											Magnam dicta, officiis dignissimos nulla, perspiciatis
-											dolorum obcaecati ea ab omnis error blanditiis. Rem
-											voluptas, qui doloremque quaerat ullam quae id nesciunt?
+											We have been teaching photography since 2002. Our courses
+											are designed to take beginners to an advanced level or
+											fill in the gaps that the more experienced photographer
+											may have.
 										</h1>
 									</div>
 									<div>

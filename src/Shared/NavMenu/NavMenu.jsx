@@ -27,11 +27,11 @@ const NavMenu = () => {
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex items-center justify-between h-16">
 						<div className="flex items-center">
-							<div className="text-2xl  text-[#56d3c4] hidden lg:block from-current font-poppins ">
+							<div className="text-2xl  text-[#C26DBC] hidden lg:block from-current font-poppins ">
 								<span className="flex justify-center h-8  items-center font-bold">
 									<img
-										src="https://img.freepik.com/premium-vector/logo-desaign-baby-doll-vector_727263-3.jpg?w=2000"
-										className="flex justify-center h-16 animate-pulse  items-center font-bold"
+										src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxhvtSBGg7erRpwPLpUSZcO6P5XOekHttUNA&usqp=CAU"
+										className="flex justify-center h-16   items-center font-bold"
 									/>
 									School Photography{" "}
 								</span>
@@ -45,11 +45,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#56d3c4",
+											color: isActive ? "#c09da9" : "#C26DBC",
 										};
 									}}
 									to="/mytoys"
-									className="text-[#56d3c4] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									My Toys
@@ -58,11 +58,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#56d3c4",
+											color: isActive ? "#c09da9" : "#C26DBC",
 										};
 									}}
 									to="/addtoys"
-									className="text-[#56d3c4] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									Add A Toy
@@ -72,11 +72,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#56d3c4",
+											color: isActive ? "#c09da9" : "#C26DBC",
 										};
 									}}
 									to="/"
-									className="text-[#56d3c4] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#c09da9] active:text-[#c09da9]"
+									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#c09da9] active:text-[#c09da9]"
 									activeClassName="border-current text-red-700"
 								>
 									Home
@@ -85,11 +85,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#56d3c4",
+											color: isActive ? "#c09da9" : "#C26DBC",
 										};
 									}}
 									to="/blog"
-									className="text-[#56d3c4] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									Blog
@@ -98,11 +98,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#56d3c4",
+											color: isActive ? "#c09da9" : "#C26DBC",
 										};
 									}}
 									to="/alltoys"
-									className="text-[#56d3c4] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									All Toys
@@ -114,11 +114,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#56d3c4",
+											color: isActive ? "#c09da9" : "#C26DBC",
 										};
 									}}
 									to="/"
-									className="text-[#56d3c4] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#c09da9] active:text-[#c09da9]"
+									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#c09da9] active:text-[#c09da9]"
 									activeClassName="border-current text-red-700"
 								>
 									Home
@@ -127,11 +127,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#56d3c4",
+											color: isActive ? "#c09da9" : "#C26DBC",
 										};
 									}}
 									to="/blog"
-									className="text-[#56d3c4] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									Blog
@@ -140,11 +140,11 @@ const NavMenu = () => {
 									style={({ isActive }) => {
 										return {
 											borderBottom: isActive ? "5px solid red" : "none",
-											color: isActive ? "#c09da9" : "#56d3c4",
+											color: isActive ? "#c09da9" : "#C26DBC",
 										};
 									}}
 									to="/alltoys"
-									className="text-[#56d3c4] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
+									className="text-[#C26DBC] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
 									activeClassName="border-current text-red-700"
 								>
 									All Toys
@@ -194,14 +194,14 @@ const NavMenu = () => {
 										</Link>
 									</button>
 
-									<Link className="py-2  mx-1 px-4 bg-[#56d3c4] text-black font-semibold rounded-lg shadow-md hover:bg-[#c09da9] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+									<Link className="py-2  mx-1 px-4 bg-[#C26DBC] text-white font-semibold rounded-lg shadow-md hover:bg-[#c09da9] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
 										<button className="">LogOut</button>
 										{/* onClick={logOut} */}
 									</Link>
 								</div>
 								{/* ) : ( */}
 								<Link
-									className="py-2 mx-1 px-4 bg-[#56d3c4] text-black  font-semibold rounded-lg shadow-md hover:bg-[#c09da9] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+									className="py-2 mx-1 px-4 bg-[#C26DBC] text-white  font-semibold rounded-lg shadow-md hover:bg-[#c09da9] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
 									to="/login"
 								>
 									<button>Login</button>
@@ -276,11 +276,11 @@ const NavMenu = () => {
 										style={({ isActive }) => {
 											return {
 												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#56d3c4",
+												color: isActive ? "#c09da9" : "#C26DBC",
 											};
 										}}
 										to="/"
-										className="text-[#56d3c4] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-red-700 active:text-red-700"
+										className="text-[#C26DBC] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-red-700 active:text-red-700"
 										activeClassName="border-current text-red-700"
 									>
 										Home
@@ -289,11 +289,11 @@ const NavMenu = () => {
 										style={({ isActive }) => {
 											return {
 												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#56d3c4",
+												color: isActive ? "#c09da9" : "#C26DBC",
 											};
 										}}
 										to="/chef"
-										className="text-[#56d3c4] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-red-700 active:text-red-700"
+										className="text-[#C26DBC] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-red-700 active:text-red-700"
 										activeClassName="border-current text-red-700"
 									>
 										All Chef
@@ -302,11 +302,11 @@ const NavMenu = () => {
 										style={({ isActive }) => {
 											return {
 												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#56d3c4",
+												color: isActive ? "#c09da9" : "#C26DBC",
 											};
 										}}
 										to="/restaurant"
-										className="text-[#56d3c4] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-red-700 active:text-red-700"
+										className="text-[#C26DBC] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-red-700 active:text-red-700"
 										activeClassName="border-current text-red-700"
 									>
 										Restaurant
@@ -315,11 +315,11 @@ const NavMenu = () => {
 										style={({ isActive }) => {
 											return {
 												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#56d3c4",
+												color: isActive ? "#c09da9" : "#C26DBC",
 											};
 										}}
 										to="/blog"
-										className="text-[#56d3c4] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-red-700 active:text-red-700"
+										className="text-[#C26DBC] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-red-700 active:text-red-700"
 										activeClassName="border-current text-red-700"
 									>
 										Blog
@@ -351,13 +351,13 @@ const NavMenu = () => {
 													</div>
 												</Link>
 											</button>
-											<Link className="py-2  mx-1 px-4 bg-[#56d3c4] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+											<Link className="py-2  mx-1 px-4 bg-[#C26DBC] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
 												<button className="">LogOut</button>
 											</Link>
 										</div>
 										{/* ) : ( */}
 										<Link
-											className="py-2 mx-1 px-4 bg-[#56d3c4] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+											className="py-2 mx-1 px-4 bg-[#C26DBC] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
 											to="/login"
 										>
 											<button>Login</button>
@@ -393,13 +393,13 @@ const NavMenu = () => {
 														</div>
 													</Link>
 												</button>
-												<Link className="py-2  mx-1 px-4 bg-[#56d3c4] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+												<Link className="py-2  mx-1 px-4 bg-[#C26DBC] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
 													<button className="">LogOut</button>
 												</Link>
 											</div>
 
 											<Link
-												className="py-2 mx-1 px-4 bg-[#56d3c4] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+												className="py-2 mx-1 px-4 bg-[#C26DBC] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
 												to="/login"
 											>
 												<button>Login</button>
@@ -412,92 +412,6 @@ const NavMenu = () => {
 					</div>
 				</div>
 			</nav>
-
-			<div className="border-b dark:border-gray-700">
-				<div className="container m-auto px-6 pt-24 md:px-12  lg:pt-[4.8rem] lg:px-7">
-					<div className="grid lg:grid-cols-2 items-center gap-12 px-2 md:px-0">
-						<div className="col-span-1">
-							<div className="relative w-full">
-								<img
-									src="images/shoes2.jpg"
-									alt="shoes"
-									loading="lazy"
-									width="100%"
-									height="640"
-								/>
-								<div className="absolute bottom-2 right-2 bg-white dark:bg-gray-800">
-									<div className="flex p-1">
-										<button
-											aria-label="button-left"
-											className="p-3 border-r dark:border-gray-600"
-										>
-											<svg
-												className="fill-gray-800 dark:fill-white bi bi-chevron-right rotate-180"
-												xmlns="http://www.w3.org/2000/svg"
-												width="16"
-												height="16"
-												fill="currentColor"
-												viewBox="0 0 16 16"
-											>
-												<path
-													fillRule="evenodd"
-													d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-												/>
-											</svg>
-										</button>
-										<button aria-label="button-right" className="p-3">
-											<svg
-												className="fill-gray-800 dark:fill-white bi bi-chevron-right"
-												xmlns="http://www.w3.org/2000/svg"
-												width="16"
-												height="16"
-												fill="currentColor"
-												viewBox="0 0 16 16"
-											>
-												<path
-													fillRule="evenodd"
-													d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708z"
-												/>
-											</svg>
-										</button>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div className="relative col-span-1">
-							<h1 className="font-bold text-5xl sm:text-6xl md:text-7xl xl:text-8xl dark:text-white">
-								A Look for every{" "}
-								<span className="text-cyan-800 dark:text-cyan-400">mood</span>.
-							</h1>
-							<div className="mt-8 lg:mt-16 space-y-8">
-								<p className="text-gray-700 dark:text-gray-300">
-									Sit amet consectetur adipisicing elit. eligendi tenetur nihil
-									quaerat suscipit, sunt dignissimos.
-								</p>
-								<div className="flex space-x-4 mt-6">
-									<button
-										type="button"
-										title="Start buying"
-										className="w-full py-3 px-6 text-center rounded-full transition duration-300 bg-gray-900 dark:bg-gray-700 hover:bg-cyan-500 active:bg-cyan-600 focus:bg-cyan-800 sm:w-max"
-									>
-										<span className="block text-white text-sm">Shop now</span>
-									</button>
-									<button
-										type="button"
-										title="Start buying"
-										className="w-full py-3 px-6 text-center rounded-full transition border border-gray-200 dark:border-gray-700 sm:w-max"
-									>
-										<span className="block text-gray-800 text-sm dark:text-white">
-											View store
-										</span>
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
 		</div>
 	);
 };
