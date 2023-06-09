@@ -3,7 +3,6 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 import toast, { Toaster } from "react-hot-toast";
-import { useRef } from "react";
 
 import { Player } from "@lottiefiles/react-lottie-player";
 import { AuthContext } from "../../../Context/AuthContext";
@@ -19,7 +18,7 @@ const Register = () => {
 	const [photo, setPhoto] = useState("");
 	const navigate = useNavigate();
 
-	const { createUser, userProfile, signInWithGoogle, user, logOut, setUser } =
+	const { createUser, userProfile, signInWithGoogle, logOut, setUser } =
 		useContext(AuthContext);
 
 	const handleSubmit = (e) => {
@@ -103,16 +102,14 @@ const Register = () => {
 				setErrorMessage("");
 				const loggedUser = result.user;
 				setUser(loggedUser);
-
-				// Navigate to previous page
-				navigate(from, { replace: true });
 			})
 			.catch((error) => {
 				// Display error message
 				setErrorMessage(error.message);
 			});
 	};
-
+	const isSubmitDisabled =
+		!name || !email || !password || !conpassword || !photo;
 	return (
 		<div>
 			<div className="relative py-5">
@@ -269,12 +266,29 @@ const Register = () => {
 									</div>
 									<button
 										type="submit"
+										disabled={isSubmitDisabled}
+										className={`relative flex h-11 w-full items-center justify-center px-6 rounded-full transition duration-300 ${
+											isSubmitDisabled
+												? "bg-gray-300 cursor-not-allowed"
+												: "bg-emerald-500 hover:bg-emerald-600 cursor-pointer"
+										}`}
+									>
+										<span
+											className={`relative font-semibold ${
+												isSubmitDisabled ? "text-gray-500" : "text-white"
+											}`}
+										>
+											{isSubmitDisabled ? "Please fill all fields" : "Submit"}
+										</span>
+									</button>
+									{/* <button
+										type="submit"
 										className="relative   flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-lime-500 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95"
 									>
 										<span className="relative text-black font-semibold  dark:text-dark">
 											Submit
 										</span>
-									</button>
+									</button> */}
 									<button
 										onClick={handleGoogleSignIn}
 										className="bg-white shadow-md shadow-lime-900 border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]"
