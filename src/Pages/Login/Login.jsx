@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import { useLocation, useNavigate } from "react-router-dom";
+import toast, { Toaster } from "react-hot-toast";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
 import { Player } from "@lottiefiles/react-lottie-player";
 const Login = () => {
@@ -117,7 +117,6 @@ const Login = () => {
 													htmlFor="password"
 													className="text-gray-600 dark:text-gray-300"
 													name="password"
-													type={show ? "text" : "password"}
 													value={password}
 													onChange={handlePassword}
 												>
@@ -127,17 +126,30 @@ const Login = () => {
 													{errorMessage && (
 														<span className="text-red-500">{errorMessage}</span>
 													)}
-													<ToastContainer
+													<Toaster
 														position="top-center"
-														autoClose={5000}
-														hideProgressBar={false}
-														newestOnTop={false}
-														closeOnClick
-														rtl={false}
-														pauseOnFocusLoss
-														draggable
-														pauseOnHover
-														theme="light"
+														reverseOrder={false}
+														gutter={8}
+														containerClassName=""
+														containerStyle={{}}
+														toastOptions={{
+															// Define default options
+															className: "",
+															duration: 5000,
+															style: {
+																background: "#363636",
+																color: "#fff",
+															},
+
+															// Default options for specific types
+															success: {
+																duration: 3000,
+																theme: {
+																	primary: "green",
+																	secondary: "black",
+																},
+															},
+														}}
 													/>
 												</p>
 											</div>
@@ -149,9 +161,8 @@ const Login = () => {
 										</div>
 										<div className="relative">
 											<input
-												type="password"
-												name="pwd"
-												id="pwd"
+												type={show ? "text" : "password"}
+												name="password"
 												placeholder="******"
 												autoComplete="current-password"
 												className=" shadow-md shadow-lime-900  focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
@@ -209,9 +220,9 @@ const Login = () => {
 									</button>
 									<p className="border-t border-gray-100 dark:border-gray-700 pt-6 text-sm text-gray-500 dark:text-gray-400">
 										Do not have an account ?
-										<a href="#" className="text-primary">
+										<Link to="/register" className="text-primary">
 											Sign up
-										</a>
+										</Link>
 									</p>
 								</form>
 							</div>
