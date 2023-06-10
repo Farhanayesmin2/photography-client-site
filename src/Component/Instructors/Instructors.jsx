@@ -1,15 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import SmallButton from "../../Shared/Button/SmallButton/SmallButton";
+import { AuthContext } from "../../Context/AuthContext";
+
 // import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const Instructors = () => {
 	// const axiosSecure = UseAxiosSecure();
-	const {
-		data: instructors = [],
-		isLoading,
-		refetch,
-	} = useQuery({
+	const { Spinner } = useContext(AuthContext);
+	const { data: instructors = [], isLoading } = useQuery({
 		queryKey: ["instructors"],
 		queryFn: async () => {
 			const res = await fetch("http://localhost:4000/instructors");
@@ -19,7 +18,7 @@ const Instructors = () => {
 	});
 
 	if (isLoading) {
-		return <p>Loading...</p>;
+		return Spinner();
 	}
 
 	return (

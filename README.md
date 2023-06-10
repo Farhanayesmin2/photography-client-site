@@ -29,3 +29,4 @@ https://daisyui.com/docs/install/
 - npm install --save @lottiefiles/react-lottie-player
 - for query i use TanStackQuery npm i @tanstack/react-query
 - for fast and secure api npm install axios
+- npm i sweetalert2

@@ -1,5 +1,4 @@
 import { createContext, useEffect, useState } from "react";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
 
 import {
 	GithubAuthProvider,
@@ -59,19 +58,11 @@ const AuthProviders = ({ children }) => {
 
 	const Spinner = () => {
 		return (
-			<div className="text-center">
-				<div className="w-full lg:w-4/5 lg:ml-auto">
-					<Player
-						autoplay
-						loop
-						src="/890-loading-animation.json"
-						className=" w-full h-full "
-					>
-						<Controls
-							visible={true}
-							buttons={["play", "repeat", "frame", "debug"]}
-						/>
-					</Player>
+			<div className="text-center w-52">
+				<div>
+					<div className=" top-0 right-0 h-screen w-screen z-50 flex justify-center items-center">
+						<div className="animate-spin rounded-full h-32 w-32 border-t-2 border-b-2 border-gray-900"></div>
+					</div>
 				</div>
 			</div>
 		);
