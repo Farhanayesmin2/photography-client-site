@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
 
 const Classes = () => {
-	const { Spinner } = useContext(AuthContext);
+	const { Spinner, user } = useContext(AuthContext);
 	const navigate = useNavigate(); // Add useNavigate hook
 
 	const { data: instructors = [], isLoading } = useQuery({
@@ -24,11 +24,38 @@ const Classes = () => {
 	if (isLoading) {
 		return Spinner(); // Assuming Spinner is a function that returns JSX
 	}
-
-	function handleSelectButton() {
+	console.log(instructors);
+	function handleSelectButton(instructor) {
 		// Check if user is available
 		const isUserAvailable = true; // Replace with your logic to check user availability
 
+		const addSelectedData = {
+			_id: instructor._id,
+			name: user.displayName,
+			email: user.email,
+			className: instructor.className,
+			classImage: instructor.classImage,
+			availableSeats: instructor.availableSeats,
+			instructorName: instructor.name,
+			image: instructor.image,
+			price: instructor.price,
+		};
+		console.log(addSelectedData);
+		fetch("http://localhost:4000/myclass", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify(addSelectedData),
+		})
+			.then((response) => response.json())
+			.then((data) => {
+				console.log(data);
+			})
+			.catch((error) => {
+				console.error(error);
+				// error("Failed to toy added");
+			});
 		if (isUserAvailable) {
 			Swal.fire({
 				position: "top-center",
@@ -111,7 +138,7 @@ const Classes = () => {
 									</p>
 									<button
 										className="btn bg-green-500  hover:bg-lime-400 font-serif w-full text-center h-9 "
-										onClick={() => handleSelectButton()}
+										onClick={() => handleSelectButton(instructor)}
 									>
 										Select
 									</button>
