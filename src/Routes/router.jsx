@@ -4,7 +4,8 @@ import NotFound from "../Pages/NotFound/NotFound";
 import Main from "../Layout/Main";
 import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
-import Register from "../Pages/Home/Register/Register";
+import Register from "../Pages/Register/Register";
+import Instructors from "../Component/Instructors/Instructors";
 
 const router = createBrowserRouter([
 	{
@@ -24,14 +25,10 @@ const router = createBrowserRouter([
 				element: <Register></Register>,
 			},
 
-			// {
-			// 	path: "/blog",
-			// 	element: <Blog></Blog>,
-			// },
-			// {
-			// 	path: "/alltoys",
-			// 	element: <AllToys></AllToys>,
-			// },
+			{
+				path: "/instructors",
+				element: <Instructors></Instructors>,
+			},
 			// {
 			// 	path: "/addtoys",
 			// 	element: <AddToys></AddToys>,
@@ -39,6 +36,10 @@ const router = createBrowserRouter([
 			// {
 			// 	path: "/mytoys",
 			// 	element: <MyToys></MyToys>,
+			// },
+			// {
+			// 	path: "/blog",
+			// 	element: <Blog></Blog>,
 			// },
 		],
 	},

@@ -27,3 +27,5 @@ https://daisyui.com/docs/install/
 **_ For Animation images _**
 
 - npm install --save @lottiefiles/react-lottie-player
+- for query i use TanStackQuery npm i @tanstack/react-query
+- for fast and secure api npm install axios

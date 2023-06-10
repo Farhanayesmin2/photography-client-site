@@ -5,7 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 
 import { Player } from "@lottiefiles/react-lottie-player";
-import { AuthContext } from "../../../Context/AuthContext";
+import { AuthContext } from "../../Context/AuthContext";
 const Register = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -16,7 +16,10 @@ const Register = () => {
 	const [passwordError, setPasswordError] = useState("");
 	const [errorMessage, setErrorMessage] = useState("");
 	const [photo, setPhoto] = useState("");
+
 	const navigate = useNavigate();
+
+	console.log(name, email, password, photo);
 
 	const { createUser, userProfile, signInWithGoogle, logOut, setUser } =
 		useContext(AuthContext);
@@ -45,6 +48,7 @@ const Register = () => {
 		createUser(email, password)
 			.then((result) => {
 				const loggedUser = result.user;
+				const account_create_time = new Date().toLocaleString();
 				setUser(loggedUser);
 				// Reset form and clear inputs
 				form.reset();
@@ -55,6 +59,7 @@ const Register = () => {
 				!errorMessage || navigate("/login");
 
 				console.log(navigate);
+				saveUser(name, email, account_create_time, photo);
 			})
 			.catch((error) => {
 				// Display error message using toast
@@ -110,6 +115,28 @@ const Register = () => {
 	};
 	const isSubmitDisabled =
 		!name || !email || !password || !conpassword || !photo;
+
+	const saveUser = (
+		name,
+		email,
+		account_type,
+		account_create_time,
+		photoURL
+	) => {
+		const user = { name, email, account_type, account_create_time, photoURL };
+		fetch("http://localhost:4000/users", {
+			method: "POST",
+			headers: {
+				"content-type": "application/json",
+			},
+			body: JSON.stringify(user),
+		})
+			.then((res) => res.json())
+			.then((data) => {
+				console.log("save user", data);
+			});
+	};
+
 	return (
 		<div>
 			<div className="relative py-5">
@@ -264,6 +291,7 @@ const Register = () => {
 											placeholder="Photo URL"
 										/>
 									</div>
+
 									<button
 										type="submit"
 										disabled={isSubmitDisabled}
@@ -281,14 +309,7 @@ const Register = () => {
 											{isSubmitDisabled ? "Please fill all fields" : "Submit"}
 										</span>
 									</button>
-									{/* <button
-										type="submit"
-										className="relative   flex h-11 w-full items-center justify-center px-6 before:absolute before:inset-0 before:rounded-full before:bg-lime-500 before:transition before:duration-300 hover:before:scale-105 active:duration-75 active:before:scale-95"
-									>
-										<span className="relative text-black font-semibold  dark:text-dark">
-											Submit
-										</span>
-									</button> */}
+
 									<button
 										onClick={handleGoogleSignIn}
 										className="bg-white shadow-md shadow-lime-900 border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]"
@@ -369,201 +390,30 @@ const Register = () => {
 };
 
 export default Register;
-// const [name, setName] = useState("");
-// const [email, setEmail] = useState("");
-// const [show, setShow] = useState(false);
-// const [emailError, setEmailError] = useState("");
-// const [password, setPassword] = useState("");
-// const [conpassword, setConPassword] = useState("");
-// const [passwordError, setPasswordError] = useState("");
-// const [errorMessage, setErrorMessage] = useState("");
-// const [photo, setPhoto] = useState("");
-// const { createUser, userProfile, signInWithGoogle, user, logOut, setUser } =
-// 	useContext(AuthContext);
-// const navigate = useNavigate();
-
-// const handleSubmit = (e) => {
-// 	e.preventDefault();
-// 	const form = e.target;
-// 	// Check for email and password errors before submitting the form
-// 	if (emailError) {
-// 		e.target.email.focus();
-// 		return;
-// 	} else if (passwordError) {
-// 		e.target.password.focus();
-// 		return;
-// 	}
-// 	// Update user profile with name and photo
-// 	userProfile(name, photo)
-// 		.then(() => {
-// 			console.log(name);
-// 			setErrorMessage("");
-// 		})
-// 		.catch((error) => {
-// 			toast.setErrorMessage(error.message);
-// 		});
-// 	// Create a new user with email and password
-// 	createUser(email, password)
-// 		.then((result) => {
-// 			setErrorMessage("");
-// 			const loggedUser = result.user;
-// 			setUser(loggedUser);
-// 			form.reset();
-// 			logOut();
-// 			// Display success message using toast
-// 			toast.success("Successfully Registered!");
-// 		})
-// 		.catch((error) => {
-// 			// Display error message using toast
-// 			console.error(error);
-// 			toast.error(error.message);
-// 		});
-
-// 	!errorMessage || navigate("/login");
-// };
-// const handleEmail = (e) => {
-// 	const emailRegex =
-// 		/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-// 	const input = e.target.value;
-// 	setEmail(input);
-// 	if (!emailRegex.test(input)) {
-// 		toast("Please provide a valid email");
-// 	} else {
-// 		setEmailError("");
-// 	}
-// };
-// const handlePassword = (e) => {
-// 	const input = e.target.value;
-// 	setPassword(input);
-// 	if (input.length < 6) {
-// 		toast("Give less than 6 characters");
-// 	} else if (!/[A-Z]/.test(input)) {
-// 		toast("Give at least one uppercase letter");
-// 	} else if (!/[!@#$%^&*]/.test(input)) {
-// 		toast("Give at least one special character");
-// 	} else {
-// 		setPasswordError("");
-// 	}
-// };
-
-// if (password !== conpassword) {
-// 	setPassword("Password & confirm password doesn't match");
-// }
-
-// const handleConPassword = (e) => {
-// 	const input = e.target.value;
-// 	setConPassword(input);
-// };
-
-// import { useContext, useState } from "react";
-// import "react-toastify/dist/ReactToastify.css";
-// import { Link, useNavigate } from "react-router-dom";
-
-// import { ToastContainer, toast } from "react-toastify";
-
-// import { Player } from "@lottiefiles/react-lottie-player";
-// import { AuthContext } from "../../../Context/AuthContext";
-// const Register = () => {
-// 	const [name, setName] = useState("");
-// 	const [email, setEmail] = useState("");
-// 	const [show, setShow] = useState(false);
-// 	const [emailError, setEmailError] = useState("");
-// 	const [password, setPassword] = useState("");
-// 	const [conpassword, setConPassword] = useState("");
-// 	const [passwordError, setPasswordError] = useState("");
-// 	const [errorMessage, setErrorMessage] = useState("");
-// 	const [photo, setPhoto] = useState("");
-// 	const { createUser, userProfile, signInWithGoogle, user, logOut, setUser } =
-// 		useContext(AuthContext);
-// 	const navigate = useNavigate();
-
-// 	const handleSubmit = (e) => {
-// 		e.preventDefault();
-// 		const form = e.target;
-// 		// Check for email and password errors before submitting the form
-// 		if (emailError) {
-// 			e.target.email.focus();
-// 			return;
-// 		} else if (passwordError) {
-// 			e.target.password.focus();
-// 			return;
-// 		}
-// 		// Update user profile with name and photo
-// 		userProfile(name, photo)
-// 			.then(() => {
-// 				console.log(name);
-// 				setErrorMessage("");
-// 			})
-// 			.catch((error) => {
-// 				toast.setErrorMessage(error.message);
-// 			});
-// 		// Create a new user with email and password
-// 		createUser(email, password)
-// 			.then((createUserResult) => {
-// 				console.log("User created:", createUserResult);
-// 				setErrorMessage("");
-// 				const loggedUser = createUserResult.user;
-// 				setUser(loggedUser);
-// 				form.reset();
-// 				logOut();
-// 				// Display success message using toast
-// 				toast.success("Successfully Registered!");
-// 			})
-// 			.catch((error) => {
-// 				// Display error message using toast
-// 				console.error(error);
-// 				toast.error(error.message);
-// 			});
-// 		!errorMessage || navigate("/login");
-// 	};
-// 	// const handleEmail = (e) => {
-// 	// 	const emailRegex =
-// 	// 		/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-// 	// 	const input = e.target.value;
-// 	// 	setEmail(input);
-// 	// 	if (!emailRegex.test(input)) {
-// 	// 		setEmailError("Please provide a valid email");
-// 	// 	} else {
-// 	// 		setEmailError("");
-// 	// 	}
-// 	// };
-// 	const handlePassword = (e) => {
-// 		const input = e.target.value;
-// 		setPassword(input);
-// 		if (input.length < 6) {
-// 			setEmailError("Give less than 6 characters ");
-// 		} else if (!/[A-Z]/.test(input)) {
-// 			setEmailError("Give at least one uppercase letter");
-// 		} else if (!/[!@#$%^&*]/.test(input)) {
-// 			setEmailError("Give at least one special character");
-// 		} else {
-// 			setPasswordError("");
-// 		}
-// 	};
-
-// 	// if (password !== conpassword) {
-// 	// 	setPassword("Password & confirm password doesn't match");
-// 	// }
-
-// 	const handleConPassword = (e) => {
-// 		const input = e.target.value;
-// 		setConPassword(input);
-// 	};
-
-// 	const handleGoogleSignIn = () => {
-// 		// Sign in with Google
-// 		signInWithGoogle()
-// 			.then((result) => {
-// 				// Reset error message and set user context
-// 				setErrorMessage("");
-// 				const loggedUser = result.user;
-// 				setUser(loggedUser);
-
-// 				// Navigate to previous page
-// 				navigate(from, { replace: true });
-// 			})
-// 			.catch((error) => {
-// 				// Display error message
-// 				setErrorMessage(error.message);
-// 			});
-// 	};
+{
+	/* account types */
+}
+{
+	/*
+		const [account_type, setAccount_type] = useState("");
+		 <div className="relative">
+			<label
+				htmlFor="account-type"
+className="text-gray-600 dark:text-gray-300">
+Account Type
+</label>
+<input
+className="shadow-md shadow-lime-900 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
+name="account_type"
+type="text"
+											value={account_type}
+											onChange={(e) => setAccount_type(e.target.value)}
+											placeholder="Account Type"
+											list="account-types"
+										/>
+										<datalist id="account-types">
+											<option value="Buyer Account" />
+											<option value="Seller Account" />
+										</datalist>
+									</div> */
+}
