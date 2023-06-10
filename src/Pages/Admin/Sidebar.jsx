@@ -1,11 +1,17 @@
-import React, { useEffect, useRef, useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup";
+
+import useAdmin from "../../Hooks/dashHooks/useAdmin";
+import useSeller from "../../Hooks/dashHooks/useSeller";
+import { AuthContext } from "../../Context/AuthContext";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 	const location = useLocation();
 	const { pathname } = location;
-
+	const { user } = useContext(AuthContext);
+	const [isAdmin] = useAdmin(user?.email);
+	const [isSeller] = useSeller(user?.email);
 	const trigger = useRef(null);
 	const sidebar = useRef(null);
 
@@ -168,7 +174,37 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 												</svg>
 											</NavLink>
 											{/* <!-- Dropdown Menu Start --> */}
-											<div
+											{isSeller && (
+												<>
+													<li>
+														<Link to="/dashboard/add-product">Add Product</Link>
+													</li>
+													<li>
+														<Link to="/dashboard/my-products">My Products</Link>
+													</li>
+													<li>
+														<Link to="/dashboard/req-order">My Buyers</Link>
+													</li>
+												</>
+											)}
+											{isAdmin && (
+												<>
+													<li>
+														<Link to="/dashboard/allusers">All users</Link>
+													</li>
+													<li>
+														<Link to="/dashboard/all-products">
+															All Products
+														</Link>
+													</li>
+													<li>
+														<Link to="/dashboard/report-to-admin">
+															Report to admin
+														</Link>
+													</li>
+												</>
+											)}
+											{/* <div
 												className={`translate transform overflow-hidden ${
 													!open && "hidden"
 												}`}
@@ -186,7 +222,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 														</NavLink>
 													</li>
 												</ul>
-											</div>
+											</div> */}
 											{/* <!-- Dropdown Menu End --> */}
 										</React.Fragment>
 									);
