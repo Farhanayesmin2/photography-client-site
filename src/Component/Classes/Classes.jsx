@@ -30,7 +30,6 @@ const Classes = () => {
 		const isUserAvailable = true; // Replace with your logic to check user availability
 
 		const addSelectedData = {
-			_id: instructor._id,
 			name: user.displayName,
 			email: user.email,
 			className: instructor.className,

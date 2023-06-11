@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import {
 	FaTrashAlt,
 	FaEye,
@@ -13,46 +13,30 @@ import { MdClose, MdShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
 
 import { AuthContext } from "../../Context/AuthContext";
-import { useQuery } from "@tanstack/react-query";
+
+import { useQuery, useMutation } from "@tanstack/react-query";
 
 const MyClass = () => {
 	const [myclassData, setmyclassData] = useState([]);
+	const [loading, setLoading] = useState(true);
 
 	const [selectedItem, setSelectedItem] = useState(null);
+	const [isLoading, setIsLoading] = useState(false);
 
 	const { user, Spinner } = useContext(AuthContext);
-	// Initialize email variable
-	const email = user && user.email;
 
-	// Fetch data using useQuery
-	const { data: myclasses = [], isLoading } = useQuery({
-		queryKey: ["myclasses", email], // Add email to the queryKey
-		queryFn: async () => {
-			if (email) {
-				const res = await fetch(`http://localhost:4000/myclass?email=${email}`);
-				const data = await res.json();
-				return data;
-			}
-			return []; // Return empty array if email is falsy
-		},
-	});
-
-	// useEffect(() => {
-	// 	if (user && user.email) {
-	// 		const email = user.email;
-	// 		fetch(`https://baby-doll-server.vercel.app/mymyclasss?email=${email}`)
-	// 			.then((res) => res.json())
-	// 			.then((data) => {
-	// 				setmyclassData(data);
-	// 				setLoading(false);
-	// 			})
-	// 			.catch((error) => console.log(error));
-	// 	}
-	// }, [user]);
-
-	const openModal = (item) => {
-		setSelectedItem(item);
-	};
+	useEffect(() => {
+		if (user && user.email) {
+			const email = user.email;
+			fetch(`http://localhost:4000/myclass?email=${email}`)
+				.then((res) => res.json())
+				.then((data) => {
+					setmyclassData(data);
+					setLoading(false);
+				})
+				.catch((error) => console.log(error));
+		}
+	}, [user]);
 
 	const closeModal = () => {
 		setSelectedItem(null);
@@ -73,7 +57,7 @@ const MyClass = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				// Send DELETE request to the server
-				fetch(`https://baby-doll-server.vercel.app/mymyclasss/${myclassId}`, {
+				fetch(`http://localhost:4000/myclass/${myclassId}`, {
 					method: "DELETE",
 				})
 					.then((res) => {
@@ -97,11 +81,10 @@ const MyClass = () => {
 			}
 		});
 	};
-
 	if (isLoading) {
 		return Spinner();
 	}
-	console.log(myclasses);
+
 	return (
 		<div className="container mx-auto py-5">
 			<h1 className="text-2xl font-bold mb-4">My Classs</h1>
@@ -119,7 +102,7 @@ const MyClass = () => {
 					</tr>
 				</thead>
 				<tbody>
-					{myclasses.map((myclass, index) => (
+					{myclassData.map((myclass, index) => (
 						<tr key={myclass.id} className="hover:bg-gray-100">
 							<td className="border px-4 py-2">{index + 1}</td>
 							<td className="border px-4 py-2">{myclass.className}</td>
@@ -157,12 +140,7 @@ const MyClass = () => {
 									<FaEye className="inline-block mr-1" /> Details
 								</Link>
 
-								<button
-									// onClick={() => openModals(myclass)}
-									//   to={`/mymyclasss/${myclass._id}`}
-									//   onClick={() => openModalUpdate(myclass._id)}
-									className="bg-green-300 text-black hover:bg-lime-400  font-bold py-2 px-4 rounded ml-2"
-								>
+								<button className="bg-green-300 text-black hover:bg-lime-400  font-bold py-2 px-4 rounded ml-2">
 									<FaCcAmazonPay className="inline-block mr-1" />
 									Pay Money
 								</button>
@@ -283,3 +261,67 @@ const MyClass = () => {
 };
 
 export default MyClass;
+// const [myclassData, setmyclassData] = useState([]);
+// const [loading, setLoading] = useState(true);
+
+// const [selectedItem, setSelectedItem] = useState(null);
+// const [isLoading, setIsLoading] = useState(false);
+
+// const { user, Spinner } = useContext(AuthContext);
+
+// useEffect(() => {
+// 	if (user && user.email) {
+// 		const email = user.email;
+// 		fetch(`http://localhost:4000/myclass?email=${email}`)
+// 			.then((res) => res.json())
+// 			.then((data) => {
+// 				setmyclassData(data);
+// 				setLoading(false);
+// 			})
+// 			.catch((error) => console.log(error));
+// 	}
+// }, [user]);
+
+// const closeModal = () => {
+// 	setSelectedItem(null);
+// };
+// // for alert
+
+// const handleDeletemyclass = (myclassId) => {
+// 	// Ask for confirmation
+// 	Swal.fire({
+// 		title: "Confirmation",
+// 		text: "Are you sure you want to delete this myclass?",
+// 		icon: "warning",
+// 		showCancelButton: true,
+// 		confirmButtonColor: "#3085d6",
+// 		cancelButtonColor: "#d33",
+// 		confirmButtonText: "Yes",
+// 		cancelButtonText: "No",
+// 	}).then((result) => {
+// 		if (result.isConfirmed) {
+// 			// Send DELETE request to the server
+// 			fetch(`http://localhost:4000/myclass/${myclassId}`, {
+// 				method: "DELETE",
+// 			})
+// 				.then((res) => {
+// 					if (res.ok) {
+// 						// If the deletion was successful, update the myclass list by removing the deleted myclass
+// 						setmyclassData(
+// 							myclassData.filter((myclass) => myclass._id !== myclassId)
+// 						);
+
+// 						// Show success alert using SweetAlert
+// 						Swal.fire("Success", "myclass deleted successfully", "success");
+// 					} else {
+// 						throw new Error("An error occurred while deleting the myclass");
+// 					}
+// 				})
+// 				.catch((error) => {
+// 					console.log(error);
+// 					// Show error toast using react-toastify or any other notification library
+// 					toast.error("An error occurred while deleting the myclass");
+// 				});
+// 		}
+// 	});
+// };
