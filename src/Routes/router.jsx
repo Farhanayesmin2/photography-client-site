@@ -9,11 +9,16 @@ import Instructors from "../Component/Instructors/Instructors";
 import Classes from "../Component/Classes/Classes";
 import DashboardLayout from "../Layout/DashboardLayout";
 import MyClass from "../Component/MyClass/MyClass";
+import Payment from "../Pages/Dashboard/Payment/Payment";
+import PrivateRoute from "./PrivateRoute/PrivateRoute";
+import AdminRoute from "./AdminRoute/AdminRoute";
+import Dashboard from "../Pages/Dashboard/Payment/Dashboard";
 
 const router = createBrowserRouter([
 	{
 		path: "/",
 		element: <Main></Main>,
+		errorElement: <NotFound></NotFound>,
 		children: [
 			{
 				path: "/",
@@ -36,23 +41,74 @@ const router = createBrowserRouter([
 				path: "/classes",
 				element: <Classes></Classes>,
 			},
+		],
+	},
+
+	{
+		path: "/dashboard",
+		element: (
+			// <PrivateRoute>
+			<DashboardLayout></DashboardLayout>
+			// </PrivateRoute>
+		),
+		errorElement: <NotFound></NotFound>,
+		children: [
 			{
-				path: "/myclass",
+				path: "/dashboard",
+				element: <Dashboard></Dashboard>,
+			},
+			{
+				path: "/dashboard/myclass",
 				element: <MyClass></MyClass>,
 			},
 			{
-				path: "/dashbroad",
-				element: <DashboardLayout> </DashboardLayout>,
+				path: "/dashboard/myclass/:id",
+				element: <Payment></Payment>,
+				loader: ({ params }) =>
+					fetch(`http://localhost:4000/dashboard/myclass/${params.id}`),
 			},
 			// {
-			// 	path: "/blog",
-			// 	element: <Blog></Blog>,
+			// 	path: "/dashboard/add-product",
+			// 	element: (
+			// 		<SellerRoute>
+			// 			<AddProducts></AddProducts>
+			// 		</SellerRoute>
+			// 	),
+			// },
+			// {
+			// 	path: "/dashboard/req-order",
+			// 	element: (
+			// 		<SellerRoute>
+			// 			<MyReqOrders></MyReqOrders>
+			// 		</SellerRoute>
+			// 	),
+			// },
+			// {
+			// 	path: "/dashboard/allusers",
+			// 	element: (
+			// 		<AdminRoute>
+			// 			<AllUsers></AllUsers>
+			// 		</AdminRoute>
+			// 	),
+			// },
+			//Admin Route
+			// {
+			// 	path: "/dashboard/manage-classes",
+			// 	element: (
+			// 		<AdminRoute>
+			// 			<AllProducts></AllProducts>
+			// 		</AdminRoute>
+			// 	),
+			// },
+			// {
+			// 	path: "/dashboard/manage-user",
+			// 	element: (
+			// 		<AdminRoute>
+			// 			<MyProducts></MyProducts>
+			// 		</AdminRoute>
+			// 	),
 			// },
 		],
-	},
-	{
-		path: "*",
-		element: <NotFound></NotFound>,
 	},
 ]);
 export default router;

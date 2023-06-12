@@ -13,8 +13,7 @@ import { MdClose, MdShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
 
 import { AuthContext } from "../../Context/AuthContext";
-
-import { useQuery, useMutation } from "@tanstack/react-query";
+import useCart from "../../Hooks/useCart";
 
 const MyClass = () => {
 	const [myclassData, setmyclassData] = useState([]);
@@ -25,10 +24,16 @@ const MyClass = () => {
 
 	const { user, Spinner } = useContext(AuthContext);
 
+	const [cart] = useCart();
+	console.log(cart);
+	// how does reduce work!!!
+	const total = myclassData.reduce((sum, item) => sum + Number(item.price), 0);
+	console.log("TOTAL PRICE:", total);
+
 	useEffect(() => {
 		if (user && user.email) {
 			const email = user.email;
-			fetch(`http://localhost:4000/myclass?email=${email}`)
+			fetch(`http://localhost:4000/dashboard/myclass?email=${email}`)
 				.then((res) => res.json())
 				.then((data) => {
 					setmyclassData(data);
@@ -37,6 +42,10 @@ const MyClass = () => {
 				.catch((error) => console.log(error));
 		}
 	}, [user]);
+
+	const openModal = (item) => {
+		setSelectedItem(item);
+	};
 
 	const closeModal = () => {
 		setSelectedItem(null);
@@ -57,7 +66,7 @@ const MyClass = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				// Send DELETE request to the server
-				fetch(`http://localhost:4000/myclass/${myclassId}`, {
+				fetch(`http://localhost:4000/dashboard/myclass/${myclassId}`, {
 					method: "DELETE",
 				})
 					.then((res) => {
@@ -88,7 +97,13 @@ const MyClass = () => {
 	return (
 		<div className="container mx-auto py-5">
 			<h1 className="text-2xl font-bold mb-4">My Classs</h1>
-
+			<div className="uppercase font-semibold h-[60px] flex justify-evenly items-center">
+				<h3 className="text-3xl">Total Items: {myclassData.length}</h3>
+				<h3 className="text-3xl">Total Price: ${total}</h3>
+				<Link to="/dashboard/payment">
+					<button className="btn btn-warning btn-sm">PAY</button>
+				</Link>
+			</div>
 			<table className="w-[100%] border">
 				<thead>
 					<tr>
@@ -103,11 +118,13 @@ const MyClass = () => {
 				</thead>
 				<tbody>
 					{myclassData.map((myclass, index) => (
-						<tr key={myclass.id} className="hover:bg-gray-100">
-							<td className="border px-4 py-2">{index + 1}</td>
-							<td className="border px-4 py-2">{myclass.className}</td>
-							<td className="border px-4 py-2">{myclass.instructorName}</td>
-							<td className="border px-4 py-2">{myclass.price}</td>
+						<tr key={myclass.id} className="hover:bg-gray-100  ">
+							<td className="border  text-sm px-4 py-2">{index + 1}</td>
+							<td className="border  text-sm px-4 py-2">{myclass.className}</td>
+							<td className="border  text-sm px-4 py-2">
+								{myclass.instructorName}
+							</td>
+							<td className="border px-4 py-2">${myclass.price}</td>
 							<td className="border px-4 py-2">{myclass.availableSeats}</td>
 							<td className="border px-4 py-2">
 								<img
@@ -134,16 +151,20 @@ const MyClass = () => {
 									</Link> */}
 
 								<Link
+									onClick={() => openModal(myclass)}
 									type="button"
 									className="w-[29%] bg-gradient-to-r from-green-300 via-pink-100 to-green-300 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-[#774d62] dark:focus:ring-pink-800 shadow-lg shadow-[#774d62] dark:shadow-lg dark:shadow-pink-800/80 font-medium text-sm px-5 text-center mr-2 mb-2 rounded-xl py-2 hover:scale-105 duration-300 rounded-xl text-black py-2 hover:scale-105 duration-300"
 								>
 									<FaEye className="inline-block mr-1" /> Details
 								</Link>
 
-								<button className="bg-green-300 text-black hover:bg-lime-400  font-bold py-2 px-4 rounded ml-2">
+								<Link
+									to={`/dashboard/myclass/${myclass._id}`}
+									className="bg-green-300 text-black hover:bg-lime-400  font-bold py-2 px-4 rounded ml-2"
+								>
 									<FaCcAmazonPay className="inline-block mr-1" />
 									Pay Money
-								</button>
+								</Link>
 								<button
 									onClick={() => handleDeletemyclass(myclass._id)}
 									className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2"

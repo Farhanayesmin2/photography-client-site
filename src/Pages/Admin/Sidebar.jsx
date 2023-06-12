@@ -1,17 +1,19 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup";
-
+// import { FaCartArrowDown } from "react-icons/fa";
+import profile from "../../assets/images (1) (1).jpeg";
 import useAdmin from "../../Hooks/dashHooks/useAdmin";
-import useSeller from "../../Hooks/dashHooks/useSeller";
+import useInstructor from "../../Hooks/dashHooks/useInstructors";
 import { AuthContext } from "../../Context/AuthContext";
+import { FaCartArrowDown, FaPeopleArrows, FaPlusCircle } from "react-icons/fa";
 
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 	const location = useLocation();
 	const { pathname } = location;
 	const { user } = useContext(AuthContext);
 	const [isAdmin] = useAdmin(user?.email);
-	const [isSeller] = useSeller(user?.email);
+	const [isInstructor] = useInstructor(user?.email);
 	const trigger = useRef(null);
 	const sidebar = useRef(null);
 
@@ -58,7 +60,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 	return (
 		<aside
 			ref={sidebar}
-			className={`absolute text-white py-5 bg-lime-600 left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden  duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
+			className={`absolute text-white py-5 bg-green-500 left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden  duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
 				sidebarOpen ? "translate-x-0" : "-translate-x-full"
 			}`}
 		>
@@ -67,11 +69,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 				<NavLink to="/">
 					<img
 						className="rounded-full w-12 h-12"
-						src="https://i0.wp.com/www.tycoonstory.com/wp-content/uploads/2022/07/Anime-Profile-Pictures-Tycoonstory.jpg?resize=500%2C286&ssl=1"
+						src={`${user.photoURL ? user.photoURL : profile}`}
 						alt="Logo"
 					/>
 				</NavLink>
-				<h1 className="text-white">Photography School</h1>
+				<h1 className="text-white">
+					{user.displayName ? user.displayName : user.email}
+				</h1>
 				<button
 					ref={trigger}
 					onClick={() => setSidebarOpen(!sidebarOpen)}
@@ -174,32 +178,48 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
 												</svg>
 											</NavLink>
 											{/* <!-- Dropdown Menu Start --> */}
-											{isSeller && (
+											{user && (
 												<>
 													<li>
-														<Link to="/dashboard/add-product">Add Product</Link>
+														<Link
+															className="flex items-center "
+															to="/dashboard/myclass"
+														>
+															<FaPeopleArrows className="mx-3"></FaPeopleArrows>{" "}
+															My Selected class
+														</Link>
 													</li>
 													<li>
-														<Link to="/dashboard/my-products">My Products</Link>
+														<Link
+															className="flex items-center "
+															to="/dashboard/myenroll"
+														>
+															<FaCartArrowDown className="  mx-3"></FaCartArrowDown>{" "}
+															My Enroll class
+														</Link>
+													</li>
+												</>
+											)}
+											{isInstructor && (
+												<>
+													<li>
+														<Link to="/dashboard/add-class">Add Class</Link>
 													</li>
 													<li>
-														<Link to="/dashboard/req-order">My Buyers</Link>
+														<Link to="/dashboard/my-class">My Class</Link>
 													</li>
 												</>
 											)}
 											{isAdmin && (
 												<>
 													<li>
-														<Link to="/dashboard/allusers">All users</Link>
-													</li>
-													<li>
-														<Link to="/dashboard/all-products">
-															All Products
+														<Link to="/dashboard/manage-classes">
+															Manage Classes
 														</Link>
 													</li>
 													<li>
-														<Link to="/dashboard/report-to-admin">
-															Report to admin
+														<Link to="/dashboard/manage-users">
+															Manage User
 														</Link>
 													</li>
 												</>

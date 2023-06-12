@@ -127,7 +127,7 @@ const Classes = () => {
 
 									<p className="flex items-center  text-gray-500 mt-2 dark:text-gray-400">
 										<MdOutlinePriceChange className="text-green-500 h-5 w-10"></MdOutlinePriceChange>{" "}
-										{instructor.price} Price
+										${instructor.price} Price
 									</p>
 
 									<p className="mt-2 text-justify  text-gray-600 dark:text-gray-300">
