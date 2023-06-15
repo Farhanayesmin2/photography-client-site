@@ -13,6 +13,8 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import AdminRoute from "./AdminRoute/AdminRoute";
 import Dashboard from "../Pages/Dashboard/Payment/Dashboard";
+import ManageClass from "../Component/AdminManage/ManageClass";
+import ManageUser from "../Component/AdminManage/ManageUser";
 
 const router = createBrowserRouter([
 	{
@@ -41,6 +43,10 @@ const router = createBrowserRouter([
 				path: "/classes",
 				element: <Classes></Classes>,
 			},
+			{
+				path: "/manage-users",
+				element: <ManageUser></ManageUser>,
+			},
 		],
 	},
 
@@ -59,22 +65,30 @@ const router = createBrowserRouter([
 			},
 			{
 				path: "/dashboard/myclass",
-				element: <MyClass></MyClass>,
+				element: (
+					<PrivateRoute>
+						{" "}
+						<MyClass></MyClass>{" "}
+					</PrivateRoute>
+				),
 			},
 			{
 				path: "/dashboard/myclass/:id",
 				element: <Payment></Payment>,
 				loader: ({ params }) =>
-					fetch(`http://localhost:4000/dashboard/myclass/${params.id}`),
+					fetch(
+						`https://school-photography-server.vercel.app/dashboard/myclass/${params.id}`
+					),
 			},
-			// {
-			// 	path: "/dashboard/add-product",
-			// 	element: (
-			// 		<SellerRoute>
-			// 			<AddProducts></AddProducts>
-			// 		</SellerRoute>
-			// 	),
-			// },
+			{
+				path: "/dashboard/manage-classes",
+				element: <ManageClass></ManageClass>,
+			},
+			{
+				path: "/dashboard/manage-users",
+				element: <ManageUser></ManageUser>,
+			},
+
 			// {
 			// 	path: "/dashboard/req-order",
 			// 	element: (

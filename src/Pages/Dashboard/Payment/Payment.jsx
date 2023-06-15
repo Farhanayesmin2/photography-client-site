@@ -16,7 +16,7 @@ const Payment = () => {
 		return <h1>Loading...</h1>;
 	}
 	return (
-		<div>
+		<div className="container mx-auto">
 			<h2 className="text-3xl">Payment for {className}</h2>
 			<p className="text-xl">
 				<i>

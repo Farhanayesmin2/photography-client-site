@@ -87,7 +87,7 @@ const Login = () => {
 										autoplay
 										speed={1}
 										loop
-										src="/public/11067-registration-animation.json"
+										src="/11067-registration-animation.json"
 										className="rounded-full w-40 h-32  "
 									></Player>
 								</h2>
@@ -105,7 +105,7 @@ const Login = () => {
 											placeholder="Email"
 											value={email}
 											onChange={handleEmail}
-											autoComplete="username"
+											autoComplete="email"
 											className="shadow-md shadow-lime-900    focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
 										/>
 									</div>
@@ -116,9 +116,6 @@ const Login = () => {
 												<label
 													htmlFor="password"
 													className="text-gray-600 dark:text-gray-300"
-													name="password"
-													value={password}
-													onChange={handlePassword}
 												>
 													Password
 												</label>
@@ -161,6 +158,8 @@ const Login = () => {
 										</div>
 										<div className="relative">
 											<input
+												value={password}
+												onChange={handlePassword}
 												type={show ? "text" : "password"}
 												name="password"
 												placeholder="******"

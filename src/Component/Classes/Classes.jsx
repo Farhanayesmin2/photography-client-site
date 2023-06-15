@@ -5,19 +5,23 @@ import { GiTeacher } from "react-icons/gi";
 import { MdEventAvailable, MdOutlinePriceChange } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
-
 import { AuthContext } from "../../Context/AuthContext";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const Classes = () => {
 	const { Spinner, user } = useContext(AuthContext);
 	const navigate = useNavigate(); // Add useNavigate hook
-
+	const [axiosSecure] = useAxiosSecure();
 	const { data: instructors = [], isLoading } = useQuery({
 		queryKey: ["instructors"],
 		queryFn: async () => {
-			const res = await fetch("http://localhost:4000/instructors");
-			const data = await res.json();
-			return data;
+			try {
+				const res = await axiosSecure("/instructors");
+				return res.data;
+			} catch (error) {
+				console.error("Error fetching instructors:", error);
+				return []; // Return an empty array as a default value in case of error
+			}
 		},
 	});
 
@@ -40,7 +44,7 @@ const Classes = () => {
 			price: instructor.price,
 		};
 		console.log(addSelectedData);
-		fetch("http://localhost:4000/myclass", {
+		fetch("https://school-photography-server.vercel.app/myclass", {
 			method: "POST",
 			headers: {
 				"Content-Type": "application/json",

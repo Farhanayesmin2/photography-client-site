@@ -13,19 +13,16 @@ import { MdClose, MdShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
 
 import { AuthContext } from "../../Context/AuthContext";
-import useCart from "../../Hooks/useCart";
 
 const MyClass = () => {
 	const [myclassData, setmyclassData] = useState([]);
-	const [loading, setLoading] = useState(true);
+	const [setLoading] = useState(true);
 
 	const [selectedItem, setSelectedItem] = useState(null);
-	const [isLoading, setIsLoading] = useState(false);
+	const [isLoading] = useState(false);
 
 	const { user, Spinner } = useContext(AuthContext);
 
-	const [cart] = useCart();
-	console.log(cart);
 	// how does reduce work!!!
 	const total = myclassData.reduce((sum, item) => sum + Number(item.price), 0);
 	console.log("TOTAL PRICE:", total);
@@ -33,7 +30,9 @@ const MyClass = () => {
 	useEffect(() => {
 		if (user && user.email) {
 			const email = user.email;
-			fetch(`http://localhost:4000/dashboard/myclass?email=${email}`)
+			fetch(
+				`https://school-photography-server.vercel.app/dashboard/myclass?email=${email}`
+			)
 				.then((res) => res.json())
 				.then((data) => {
 					setmyclassData(data);
@@ -66,9 +65,12 @@ const MyClass = () => {
 		}).then((result) => {
 			if (result.isConfirmed) {
 				// Send DELETE request to the server
-				fetch(`http://localhost:4000/dashboard/myclass/${myclassId}`, {
-					method: "DELETE",
-				})
+				fetch(
+					`https://school-photography-server.vercel.app/dashboard/myclass/${myclassId}`,
+					{
+						method: "DELETE",
+					}
+				)
 					.then((res) => {
 						if (res.ok) {
 							// If the deletion was successful, update the myclass list by removing the deleted myclass

@@ -5,7 +5,7 @@ const useInstructors = email => {
     const [isInstructorLoading, setIsInstructorLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`https://assignment-12-server-site-eight.vercel.app/users/Instructor/${email}`)
+            fetch(`https://school-photography-server.vercel.app/users/instructor/${email}`)
                 .then(res => res.json())
                 .then(data => {
                     console.log(data);

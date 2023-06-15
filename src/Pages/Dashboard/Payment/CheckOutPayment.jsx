@@ -5,7 +5,7 @@ import useAxiosSecure from "../../../Hooks/UseAxiosSecure";
 
 const CheckOutPayment = ({ payment }) => {
 	const { user } = useContext(AuthContext);
-	console.log(payment.user);
+	console.log(user);
 	const stripe = useStripe();
 	const elements = useElements();
 	const { price, availableSeats, _id, className, classImage, instructorName } =
@@ -17,6 +17,8 @@ const CheckOutPayment = ({ payment }) => {
 	const [transactionId, setTransactionId] = useState("");
 
 	useEffect(() => {
+		console.log(price);
+
 		if (price > 0) {
 			axiosSecure.post("/create-payment-intent", { price }).then((res) => {
 				console.log(res.data.clientSecret);
@@ -53,36 +55,45 @@ const CheckOutPayment = ({ payment }) => {
 		setProcessing(true);
 
 		const { paymentIntent, error: confirmError } =
-			await stripe.confirmCardPayment(
-				`${clientSecret}_secret_${paymentIntent?.id}`, // Use paymentIntent?.id instead of paymentIntent.id
-				{
-					payment_method: {
-						card: card,
-						billing_details: {
-							email: user?.email || "unknown",
-							name: user?.displayName || "anonymous",
-						},
+			await stripe.confirmCardPayment(clientSecret, {
+				payment_method: {
+					card: card,
+					billing_details: {
+						email: user?.email || "unknown",
+						name: user?.displayName || "anonymous",
 					},
-				}
-			);
+				},
+			});
 
 		if (confirmError) {
 			console.log(confirmError);
 		}
-		console.log(user);
-		console.log("payment intent", paymentIntent);
-		setProcessing(false);
 
+		// const { paymentIntent, error: confirmError } =
+		// 	await stripe.confirmCardPayment(clientSecret, {
+		// 		payment_method: {
+		// 			card: card,
+		// 			billing_details: {
+		// 				email: user?.email || "unknown",
+		// 				name: user?.displayName || "anonymous",
+		// 			},
+		// 		},
+		// 	});
+
+		// if (confirmError) {
+		// 	console.log(confirmError);
+		// }
+		// console.log(user);
+		// console.log("payment intent", paymentIntent);
+		setProcessing(false);
 		if (paymentIntent.status === "succeeded") {
 			setTransactionId(paymentIntent.id);
 			// save payment information to the server
 			const payment = {
 				transactionId: paymentIntent.id,
-
 				date: new Date(),
 				email: user?.email,
 				price,
-
 				availableSeats,
 				quantity: payment.length,
 				className,
@@ -133,6 +144,12 @@ const CheckOutPayment = ({ payment }) => {
 						Transaction complete with transactionId: {transactionId}
 					</p>
 				)}
+				{/* {cardError && <p className="text-red-600 ml-8">{cardError}</p>}
+				{transactionId && (
+					<p className="text-green-500">
+						Transaction complete with transactionId: {transactionId}
+					</p>
+				)} */}
 			</>
 
 			{/* <form onSubmit={handleSubmit}>

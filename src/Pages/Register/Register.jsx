@@ -14,12 +14,12 @@ const Register = () => {
 	const [emailError, setEmailError] = useState("");
 	const [password, setPassword] = useState("");
 	const [passwordError, setPasswordError] = useState("");
-	const [errorMessage, setErrorMessage] = useState("");
-	const [photo, setPhoto] = useState("");
+	const [setErrorMessage] = useState("");
+	const [photoURL, setPhotoURL] = useState("");
 
 	const navigate = useNavigate();
 
-	console.log(name, email, password, photo);
+	console.log(name, email, password, photoURL);
 
 	const { createUser, userProfile, signInWithGoogle, logOut, setUser } =
 		useContext(AuthContext);
@@ -36,7 +36,7 @@ const Register = () => {
 			return;
 		}
 		// Update user profile with name and photo
-		userProfile(name, photo)
+		userProfile(name, photoURL)
 			.then(() => {
 				console.log(name);
 				setErrorMessage("");
@@ -55,11 +55,14 @@ const Register = () => {
 				logOut();
 				// Display success message using toast
 				toast.success("Successfully Registered!");
-				// Redirect to the login page
-				!errorMessage || navigate("/login");
+				// Redirect to the login page\
+				if (toast.success) {
+					navigate("/login");
+					// !errorMessage ||
+				}
 
 				console.log(navigate);
-				saveUser(name, email, account_create_time, photo);
+				saveUser(name, email, photoURL, account_create_time);
 			})
 			.catch((error) => {
 				// Display error message using toast
@@ -114,16 +117,15 @@ const Register = () => {
 			});
 	};
 	const isSubmitDisabled =
-		!name || !email || !password || !conpassword || !photo;
+		!name || !email || !password || !conpassword || !photoURL;
 
-	const saveUser = (
-		name,
-		email,
-		account_type,
-		account_create_time,
-		photoURL
-	) => {
-		const user = { name, email, account_type, account_create_time, photoURL };
+	const saveUser = (name, email, photoURL, account_create_time) => {
+		const user = {
+			name: name,
+			email: email,
+			photoURL: photoURL,
+			account_create_time,
+		};
 		fetch("http://localhost:4000/users", {
 			method: "POST",
 			headers: {
@@ -150,7 +152,7 @@ const Register = () => {
 										autoplay
 										speed={1}
 										loop
-										src="/public/112454-form-registration.json"
+										src="/112454-form-registration.json"
 										className="rounded-full w-40 h-32  "
 									></Player>
 								</h2>
@@ -286,8 +288,8 @@ const Register = () => {
 											className="shadow-md shadow-lime-900 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
 											name="photoURL"
 											type="text"
-											value={photo}
-											onChange={(e) => setPhoto(e.target.value)}
+											value={photoURL}
+											onChange={(e) => setPhotoURL(e.target.value)}
 											placeholder="Photo URL"
 										/>
 									</div>

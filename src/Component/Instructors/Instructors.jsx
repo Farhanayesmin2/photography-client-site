@@ -2,21 +2,24 @@ import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
+import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 // import UseAxiosSecure from "../../Hooks/UseAxiosSecure";
 
 const Instructors = () => {
 	// const axiosSecure = UseAxiosSecure();
+	const [axiosSecure] = useAxiosSecure();
 	const { Spinner } = useContext(AuthContext);
 	const { data: instructors = [], isLoading } = useQuery({
 		queryKey: ["instructors"],
 		queryFn: async () => {
-			const res = await fetch("http://localhost:4000/instructors");
-			const data = await res.json();
-			return data;
+			const res = await axiosSecure.get("/instructors");
+			// const data = await res.json();
+			// console.log(data?.data);
+			return res.data.data;
 		},
 	});
-
+	console.log(instructors);
 	if (isLoading) {
 		return Spinner();
 	}

@@ -30,3 +30,8 @@ https://daisyui.com/docs/install/
 - for query i use TanStackQuery npm i @tanstack/react-query
 - for fast and secure api npm install axios
 - npm i sweetalert2
+  Admin: admin@gmail.com password: Admin1@
+  \*\*\* Live Link: https://photography-school-634e6.web.app/
+  // Code ----> 1. Client code: https://github.com/programming-hero-web-course1/b712-summer-camp-client-side-Farhanayesmin2
+  // code ----> 2. Server Code: https://github.com/programming-hero-web-course1/b7a12-summer-camp-server_side-Farhanayesmin2
+  // Server side: Vercel https://school-photography-server.vercel.app/

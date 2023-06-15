@@ -9,7 +9,7 @@ const NotFound = () => {
 					autoplay
 					speed={1.5}
 					loop
-					src="/public/107894-404-page-not-found.json"
+					src="/107894-404-page-not-found.json"
 					className="rounded-full w-96 h-96  "
 				></Player>
 				<h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-700 sm:text-5xl">

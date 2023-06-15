@@ -3,7 +3,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
 import useInstructors from "../../Hooks/dashHooks/useInstructors";
 
-const AdminRoute = ({ children }) => {
+const InstructorRoute = ({ children }) => {
 	const { user, loading } = useContext(AuthContext);
 	const [isInstructor, isInstructorLoading] = useInstructors(user?.email);
 	const location = useLocation();
@@ -21,4 +21,4 @@ const AdminRoute = ({ children }) => {
 	);
 };
 
-export default AdminRoute;
+export default InstructorRoute;
