@@ -2,34 +2,44 @@ import { Outlet } from "react-router-dom";
 
 import DashboardNavbar from "../Shared/DashNav/DashboardNavbar";
 
-import Sidebar from "../Pages/Admin/Sidebar";
-
-// import {
-// 	FaCartArrowDown,
-// 	FaPeopleArrows,
-// 	FaHome,
-// 	FaPlusCircle,
-// } from "react-icons/fa";
+import useAdmin from "../Hooks/dashHooks/useAdmin";
+import AdminSideBar from "../Pages/SideBar/AdminSideBar/AdminSideBar";
+import InstructorSideBar from "../Pages/SideBar/InstructorSideBar/InstructorSideBar";
+import UserSideBar from "../Pages/SideBar/UserSideBar/UserSideBar";
+import useInstructors from "../Hooks/dashHooks/useInstructors";
 import { useContext } from "react";
-// import useAdmin from "../Hooks/dashHooks/useAdmin";
-// import useInstructors from "../Hooks/dashHooks/useInstructors";
 import { AuthContext } from "../Context/AuthContext";
 
 const DashboardLayout = () => {
+	const [isAdmin] = useAdmin();
+	const [isInstructor] = useInstructors();
 	const { user } = useContext(AuthContext);
-	// const [isAdmin] = useAdmin();
-	// const [isInstructor] = useInstructors();
-	console.log(user);
 	return (
 		<div>
+			hello
 			<DashboardNavbar></DashboardNavbar>
-
 			<div className="drawer  ">
 				<input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 				<div className="drawer-content">
 					<Outlet></Outlet>
 				</div>
-				<Sidebar></Sidebar>
+				{isAdmin === "admin" && (
+					<>
+						{" "}
+						<AdminSideBar></AdminSideBar>{" "}
+					</>
+				)}
+				{isInstructor === "instructor" && (
+					<>
+						<InstructorSideBar></InstructorSideBar>
+					</>
+				)}
+				{user && (
+					<>
+						<UserSideBar></UserSideBar>
+					</>
+				)}
+				{/* <Sidebar></Sidebar> */}
 			</div>
 			{/* 
 			<DashboardNavbar></DashboardNavbar>
@@ -50,7 +60,6 @@ const DashboardLayout = () => {
 						<Link to="/dashboard/my-class">My Class</Link>
 					</li>
 				</> */}
-
 			{/* <div className="drawer-side">
 					<label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
 					<ul className="menu p-4 w-80 bg-base-100 text-base-content">

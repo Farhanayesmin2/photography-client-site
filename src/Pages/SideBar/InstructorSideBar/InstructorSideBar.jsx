@@ -1,18 +1,13 @@
-import { Link, NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-import { FaCartArrowDown, FaPeopleArrows, FaHome } from "react-icons/fa";
+import { FaPeopleArrows, FaHome } from "react-icons/fa";
 import { useContext } from "react";
-import { AuthContext } from "../../Context/AuthContext";
-import useAdmin from "../../Hooks/dashHooks/useAdmin";
-import useInstructors from "../../Hooks/dashHooks/useInstructors";
-import profile from "../../assets/images (1) (1).jpeg";
 
-const Sidebar = () => {
+import profile from "../../../assets/images (1) (1).jpeg";
+import { AuthContext } from "../../../Context/AuthContext";
+const InstructorSideBar = () => {
 	const { user } = useContext(AuthContext);
-	const [isAdmin] = useAdmin();
-	const [isInstructor] = useInstructors();
-
-	console.log(isAdmin);
+	console.log(user);
 
 	console.log(user);
 	return (
@@ -55,44 +50,20 @@ const Sidebar = () => {
 								<span>Dashboard</span>
 							</a>
 						</li>
-						{isAdmin ? (
-							<>
-								<li>
-									<NavLink to="/dashboard/adminhome">
-										<FaHome></FaHome> Admin Home
-									</NavLink>
-								</li>
-								<li>
-									<NavLink to="/dashboard/addItem"> Add an Item</NavLink>
-								</li>
-								<li>
-									<NavLink to="/dashboard/manageitems">Manage Items</NavLink>
-								</li>
-								<li>
-									<NavLink to="/">Manage Bookings(not implemented)</NavLink>
-								</li>
-								<li>
-									<NavLink to="/dashboard/allusers">All Users</NavLink>
-								</li>
-							</>
-						) : (
-							<>
-								<li>
-									<NavLink to="/dashboard/userhome">
-										<FaHome></FaHome> User Home
-									</NavLink>
-								</li>
-								<li>
-									<NavLink to="/">Reservations</NavLink>
-								</li>
-								<li>
-									<NavLink to="/">Payment History</NavLink>
-								</li>
-								<li>
-									<NavLink to="/dashboard/mycart"></NavLink>
-								</li>
-							</>
-						)}
+						<ul className="menu ">
+							{/* Instructor routes */}
+							<li>
+								<Link to="/dashboard/add-class" className="flex items-center">
+									<FaHome className="mr-3" /> Add Class
+								</Link>
+							</li>
+							<li>
+								<Link to="/dashboard/my-class" className="flex items-center">
+									<FaPeopleArrows className="mr-3" /> My Class
+								</Link>
+							</li>
+						</ul>
+						;
 						<li>
 							<a
 								rel="noopener noreferrer"
@@ -203,60 +174,4 @@ const Sidebar = () => {
 	);
 };
 
-export default Sidebar;
-
-// <ul className="menu ">
-// 	{isAdmin ? (
-// 		<>
-// 			{/* Admin routes */}
-// 			<li>
-// 				<NavLink to="/dashboard/adminhome" activeClassName="text-blue-500">
-// 					<FaHome className="" /> Admin Home
-// 				</NavLink>
-// 			</li>
-// 			<li>
-// 				<Link to="/dashboard/manage-classes" className="flex items-center">
-// 					<FaPeopleArrows className="" /> Manage Classes
-// 				</Link>
-// 			</li>
-// 			<li>
-// 				<Link to="/dashboard/manage-users" className="flex items-center">
-// 					<FaCartArrowDown className="" /> Manage Users
-// 				</Link>
-// 			</li>
-// 		</>
-// 	) : isInstructor ? (
-// 		<>
-// 			{/* Instructor routes */}
-// 			<li>
-// 				<Link to="/dashboard/add-class" className="flex items-center">
-// 					<FaHome className="mr-3" /> Add Class
-// 				</Link>
-// 			</li>
-// 			<li>
-// 				<Link to="/dashboard/my-class" className="flex items-center">
-// 					<FaPeopleArrows className="mr-3" /> My Class
-// 				</Link>
-// 			</li>
-// 		</>
-// 	) : (
-// 		<>
-// 			{/* Normal user routes */}
-// 			<li>
-// 				<NavLink to="/dashboard/userhome">
-// 					<FaHome className="" /> User Home
-// 				</NavLink>
-// 			</li>
-// 			<li>
-// 				<Link className="flex items-center" to="/dashboard/myclass">
-// 					<FaPeopleArrows className="" /> My Selected class
-// 				</Link>
-// 			</li>
-// 			<li>
-// 				<Link className="flex items-center" to="/dashboard/myenroll">
-// 					<FaCartArrowDown className="" /> My Enroll class
-// 				</Link>
-// 			</li>
-// 		</>
-// 	)}
-// </ul>;
+export default InstructorSideBar;

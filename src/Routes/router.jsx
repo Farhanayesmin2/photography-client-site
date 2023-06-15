@@ -10,8 +10,8 @@ import Classes from "../Component/Classes/Classes";
 import DashboardLayout from "../Layout/DashboardLayout";
 import MyClass from "../Component/MyClass/MyClass";
 import Payment from "../Pages/Dashboard/Payment/Payment";
-import PrivateRoute from "./PrivateRoute/PrivateRoute";
-import AdminRoute from "./AdminRoute/AdminRoute";
+// import PrivateRoute from "./PrivateRoute/PrivateRoute";
+// import AdminRoute from "./AdminRoute/AdminRoute";
 import Dashboard from "../Pages/Dashboard/Payment/Dashboard";
 import ManageClass from "../Component/AdminManage/ManageClass";
 import ManageUser from "../Component/AdminManage/ManageUser";
@@ -27,53 +27,42 @@ const router = createBrowserRouter([
 				element: <Home></Home>,
 			},
 			{
-				path: "/login",
+				path: "register",
+				element: <Register></Register>,
+			},
+			{
+				path: "login",
 				element: <Login></Login>,
 			},
 			{
-				path: "/register",
-				element: <Register></Register>,
-			},
-
-			{
-				path: "/instructors",
+				path: "instructor",
 				element: <Instructors></Instructors>,
 			},
 			{
-				path: "/classes",
+				path: "classes",
 				element: <Classes></Classes>,
-			},
-			{
-				path: "/manage-users",
-				element: <ManageUser></ManageUser>,
 			},
 		],
 	},
-
 	{
-		path: "/dashboard",
+		path: "dashboard",
 		element: (
-			// <PrivateRoute>
+			// <PrivetRoutes>
 			<DashboardLayout></DashboardLayout>
-			// </PrivateRoute>
+			// </PrivetRoutes>
 		),
-		errorElement: <NotFound></NotFound>,
 		children: [
 			{
-				path: "/dashboard",
+				path: "dashboard",
 				element: <Dashboard></Dashboard>,
 			},
+
 			{
-				path: "/dashboard/myclass",
-				element: (
-					<PrivateRoute>
-						{" "}
-						<MyClass></MyClass>{" "}
-					</PrivateRoute>
-				),
+				path: "myclass",
+				element: <MyClass></MyClass>,
 			},
 			{
-				path: "/dashboard/myclass/:id",
+				path: "myclass/:id",
 				element: <Payment></Payment>,
 				loader: ({ params }) =>
 					fetch(
@@ -81,47 +70,13 @@ const router = createBrowserRouter([
 					),
 			},
 			{
-				path: "/dashboard/manage-classes",
+				path: "manage-classes",
 				element: <ManageClass></ManageClass>,
 			},
 			{
-				path: "/dashboard/manage-users",
+				path: "manage-users",
 				element: <ManageUser></ManageUser>,
 			},
-
-			// {
-			// 	path: "/dashboard/req-order",
-			// 	element: (
-			// 		<SellerRoute>
-			// 			<MyReqOrders></MyReqOrders>
-			// 		</SellerRoute>
-			// 	),
-			// },
-			// {
-			// 	path: "/dashboard/allusers",
-			// 	element: (
-			// 		<AdminRoute>
-			// 			<AllUsers></AllUsers>
-			// 		</AdminRoute>
-			// 	),
-			// },
-			//Admin Route
-			// {
-			// 	path: "/dashboard/manage-classes",
-			// 	element: (
-			// 		<AdminRoute>
-			// 			<AllProducts></AllProducts>
-			// 		</AdminRoute>
-			// 	),
-			// },
-			// {
-			// 	path: "/dashboard/manage-user",
-			// 	element: (
-			// 		<AdminRoute>
-			// 			<MyProducts></MyProducts>
-			// 		</AdminRoute>
-			// 	),
-			// },
 		],
 	},
 ]);

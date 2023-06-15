@@ -5,6 +5,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import profile from "../../assets/images (1) (1).jpeg";
 const NavMenu = () => {
 	const { user, logOut } = useContext(AuthContext);
+	console.log("file: NavMenu.jsx:8 ~ NavMenu ~ user:", user);
 	const [isOpen, setIsOpen] = useState(false);
 	const [isDarkMode, setIsDarkMode] = useState(false);
 	useEffect(() => {
