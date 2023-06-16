@@ -6,9 +6,10 @@ import useAdmin from "../Hooks/dashHooks/useAdmin";
 import AdminSideBar from "../Pages/SideBar/AdminSideBar/AdminSideBar";
 import InstructorSideBar from "../Pages/SideBar/InstructorSideBar/InstructorSideBar";
 import UserSideBar from "../Pages/SideBar/UserSideBar/UserSideBar";
-import useInstructors from "../Hooks/dashHooks/useInstructors";
+
 import { useContext } from "react";
 import { AuthContext } from "../Context/AuthContext";
+import useInstructors from "../Hooks/dashHooks/useInstructors";
 
 const DashboardLayout = () => {
 	const [isAdmin] = useAdmin();
@@ -16,20 +17,19 @@ const DashboardLayout = () => {
 	const { user } = useContext(AuthContext);
 	return (
 		<div>
-			hello
 			<DashboardNavbar></DashboardNavbar>
 			<div className="drawer  ">
 				<input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
 				<div className="drawer-content">
 					<Outlet></Outlet>
 				</div>
-				{isAdmin === "admin" && (
+				{isAdmin === "admin" && user && (
 					<>
 						{" "}
 						<AdminSideBar></AdminSideBar>{" "}
 					</>
 				)}
-				{isInstructor === "instructor" && (
+				{isInstructor && user && (
 					<>
 						<InstructorSideBar></InstructorSideBar>
 					</>

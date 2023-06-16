@@ -63,7 +63,7 @@ const InstructorSideBar = () => {
 								</Link>
 							</li>
 						</ul>
-						;
+
 						<li>
 							<a
 								rel="noopener noreferrer"

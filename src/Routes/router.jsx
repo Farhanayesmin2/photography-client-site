@@ -15,6 +15,8 @@ import Payment from "../Pages/Dashboard/Payment/Payment";
 import Dashboard from "../Pages/Dashboard/Payment/Dashboard";
 import ManageClass from "../Component/AdminManage/ManageClass";
 import ManageUser from "../Component/AdminManage/ManageUser";
+import MyEnroll from "../Component/MyEnroll/MyEnroll";
+import AddInstructor from "../Pages/InstructorDashboard/AddInstructor";
 
 const router = createBrowserRouter([
 	{
@@ -35,7 +37,7 @@ const router = createBrowserRouter([
 				element: <Login></Login>,
 			},
 			{
-				path: "instructor",
+				path: "instructors",
 				element: <Instructors></Instructors>,
 			},
 			{
@@ -62,6 +64,10 @@ const router = createBrowserRouter([
 				element: <MyClass></MyClass>,
 			},
 			{
+				path: "myenroll",
+				element: <MyEnroll></MyEnroll>,
+			},
+			{
 				path: "myclass/:id",
 				element: <Payment></Payment>,
 				loader: ({ params }) =>
@@ -76,6 +82,10 @@ const router = createBrowserRouter([
 			{
 				path: "manage-users",
 				element: <ManageUser></ManageUser>,
+			},
+			{
+				path: "addclass",
+				element: <AddInstructor></AddInstructor>,
 			},
 		],
 	},

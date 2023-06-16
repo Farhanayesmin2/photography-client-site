@@ -67,7 +67,7 @@ const UserSideBar = () => {
 								</Link>
 							</li>
 						</ul>
-						;
+
 						<li>
 							<a
 								rel="noopener noreferrer"

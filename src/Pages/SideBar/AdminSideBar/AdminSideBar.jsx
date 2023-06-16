@@ -67,7 +67,7 @@ const AdminSideBar = () => {
 								</Link>
 							</li>
 						</ul>
-						;
+
 						<li>
 							<a
 								rel="noopener noreferrer"

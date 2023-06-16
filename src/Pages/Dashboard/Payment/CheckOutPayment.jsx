@@ -1,24 +1,32 @@
 import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import { useContext, useEffect, useState } from "react";
-import { AuthContext } from "../../../Context/AuthContext";
+import Swal from "sweetalert2";
 import useAxiosSecure from "../../../Hooks/UseAxiosSecure";
+import { AuthContext } from "../../../Context/AuthContext";
 
 const CheckOutPayment = ({ payment }) => {
 	const { user } = useContext(AuthContext);
 	console.log(user);
 	const stripe = useStripe();
 	const elements = useElements();
-	const { price, availableSeats, _id, className, classImage, instructorName } =
-		payment;
+	const {
+		email,
+		price,
+		image,
+
+		availableSeats,
+		_id,
+		className,
+		classImage,
+		instructorName,
+	} = payment || {};
 	const [axiosSecure] = useAxiosSecure();
 	const [cardError, setCardError] = useState("");
 	const [clientSecret, setClientSecret] = useState("");
 	const [processing, setProcessing] = useState(false);
 	const [transactionId, setTransactionId] = useState("");
-
+	console.log(payment, price);
 	useEffect(() => {
-		console.log(price);
-
 		if (price > 0) {
 			axiosSecure.post("/create-payment-intent", { price }).then((res) => {
 				console.log(res.data.clientSecret);
@@ -69,22 +77,6 @@ const CheckOutPayment = ({ payment }) => {
 			console.log(confirmError);
 		}
 
-		// const { paymentIntent, error: confirmError } =
-		// 	await stripe.confirmCardPayment(clientSecret, {
-		// 		payment_method: {
-		// 			card: card,
-		// 			billing_details: {
-		// 				email: user?.email || "unknown",
-		// 				name: user?.displayName || "anonymous",
-		// 			},
-		// 		},
-		// 	});
-
-		// if (confirmError) {
-		// 	console.log(confirmError);
-		// }
-		// console.log(user);
-		// console.log("payment intent", paymentIntent);
 		setProcessing(false);
 		if (paymentIntent.status === "succeeded") {
 			setTransactionId(paymentIntent.id);
@@ -92,19 +84,28 @@ const CheckOutPayment = ({ payment }) => {
 			const payment = {
 				transactionId: paymentIntent.id,
 				date: new Date(),
-				email: user?.email,
-				price,
-				availableSeats,
-				quantity: payment.length,
-				className,
-				instructorName,
-				classImage,
 				selectId: _id,
+				useremail: user?.email,
+				instructorEmail: email,
+				availableSeats,
+				className,
+				image,
+				price,
+				classImage,
+				studentName: user?.displayName,
+				instructorName,
 			};
+			console.log(payment);
 			axiosSecure.post("/payments", payment).then((res) => {
-				console.log(res.data);
-				if (res.data.result.insertedId) {
-					// display confirm
+				console.log(res.data.insertedId);
+				if (res.data.insertedId) {
+					Swal.fire({
+						position: "top-center",
+						icon: "success",
+						title: "Your order has been successful",
+						showConfirmButton: false,
+						timer: 1500,
+					});
 				}
 			});
 		}
@@ -133,7 +134,7 @@ const CheckOutPayment = ({ payment }) => {
 					<button
 						className="btn btn-primary btn-sm mt-4"
 						type="submit"
-						// disabled={!stripe || !clientSecret || processing}
+						disabled={!stripe || !clientSecret || processing}
 					>
 						Pay
 					</button>

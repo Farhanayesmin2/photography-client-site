@@ -8,10 +8,11 @@ const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
 
 const Payment = () => {
 	const payment = useLoaderData();
+	console.log(payment);
 	const navigation = useNavigation();
 
 	const { price, className } = payment;
-	console.log(payment);
+
 	if (navigation.state === "loading") {
 		return <h1>Loading...</h1>;
 	}
