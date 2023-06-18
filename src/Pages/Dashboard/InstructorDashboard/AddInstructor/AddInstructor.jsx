@@ -2,13 +2,15 @@
 
 import Swal from "sweetalert2";
 import { useState } from "react";
-import useAxiosSecure from "../../Hooks/UseAxiosSecure";
-import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../../../Hooks/UseAxiosSecure";
+import useAuth from "../../../../Hooks/useAuth";
 
 const AddInstructor = () => {
 	const [axiosSecure] = useAxiosSecure();
 	const { user } = useAuth();
 	// const { displayName, email } = user;
+	const name = user ? user.displayName : "Admin";
+	const email = user ? user.email : "admin@gmail.com";
 	console.log(user);
 	const [className, setClassName] = useState("");
 	const [photoURL, setPhotoURL] = useState(""); // Initialize with an empty string
@@ -20,8 +22,8 @@ const AddInstructor = () => {
 		e.preventDefault();
 
 		const data = {
-			name: user.displayName,
-			email: user.email,
+			name: name,
+			email: email,
 			class_name: className,
 			feedback: "",
 			totalEnrolled: 0,
@@ -52,9 +54,9 @@ const AddInstructor = () => {
 			axiosSecure.post("/addInstructor", data).then((res) => {
 				if (res.data.insertedId) {
 					Swal.fire({
-						position: "top-end",
+						position: "top-center",
 						icon: "success",
-						title: "Add Class success",
+						title: "Add Class successfully",
 						showConfirmButton: false,
 						timer: 1500,
 					});
@@ -114,7 +116,7 @@ const AddInstructor = () => {
 							type="text"
 							id="instructor"
 							className="shadow-md shadow-lime-900 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
-							value={user.displayName}
+							value={name}
 							readOnly
 						/>
 					</div>
@@ -127,7 +129,7 @@ const AddInstructor = () => {
 							type="email"
 							id="instructor_email"
 							className="shadow-md shadow-lime-900 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
-							value={user.email}
+							value={email}
 							readOnly
 						/>
 					</div>
@@ -168,7 +170,7 @@ const AddInstructor = () => {
 
 					<button
 						type="submit"
-						className=" rounded-full shadow-slate-400 shadow-lg    bg-green-400 text-white h-12 w-full font-serif font-semibold text-lg "
+						className=" rounded-full shadow-slate-400 shadow-lg bg-green-400 text-white h-12 w-full font-serif font-semibold text-lg "
 					>
 						Add Instructor
 					</button>

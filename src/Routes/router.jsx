@@ -13,11 +13,11 @@ import MyEnroll from "../Pages/Dashboard/StudentDashboard/MyEnroll/MyEnroll";
 import Payment from "../Pages/Dashboard/StudentDashboard/Payment/Payment";
 import ManageClass from "../Pages/Dashboard/AdminDashboard/AdminManage/ManageClass";
 import ManageUser from "../Pages/Dashboard/AdminDashboard/AdminManage/ManageUser";
-import Dashboard from "../Pages/Dashboard/Dashboard";
-
+import Dashboard from "../Pages/Dashboard/AdminDashboard/AdminManage/Dashboard";
 import PaymentHistory from "../Pages/Dashboard/StudentDashboard/PaymentHistory/PaymentHistory";
 import AdminRoute from "./AdminRoute/AdminRoute";
-import AddInstructor from "../Pages/InstructorDashboard/AddInstructor";
+import AddInstructor from "../Pages/Dashboard/InstructorDashboard/AddInstructor/AddInstructor";
+import InstructorClass from "../Pages/Dashboard/InstructorDashboard/InstructorClass/InstructorClass";
 
 const router = createBrowserRouter([
 	{
@@ -95,6 +95,10 @@ const router = createBrowserRouter([
 			{
 				path: "addclass",
 				element: <AddInstructor></AddInstructor>,
+			},
+			{
+				path: "instructorclass",
+				element: <InstructorClass></InstructorClass>,
 			},
 		],
 	},

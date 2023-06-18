@@ -59,8 +59,11 @@ const InstructorSideBar = () => {
 								</Link>
 							</li>
 							<li>
-								<Link to="/dashboard/myclass" className="flex items-center">
-									<FaPeopleArrows className="mr-3" /> My Class
+								<Link
+									to="/dashboard/instructorclass"
+									className="flex items-center"
+								>
+									<FaPeopleArrows className="mr-3" /> Instructor Class
 								</Link>
 							</li>
 						</ul>
