@@ -1,59 +1,77 @@
-import { useForm } from "react-hook-form";
+//import axios from "axios";
 
-import axios from "axios";
 import Swal from "sweetalert2";
-
-import { useContext } from "react";
-import { AuthContext } from "../../Context/AuthContext";
+import { useState } from "react";
 import useAxiosSecure from "../../Hooks/UseAxiosSecure";
+import useAuth from "../../Hooks/useAuth";
 
 const AddInstructor = () => {
 	const [axiosSecure] = useAxiosSecure();
-	const { user } = useContext(AuthContext);
-	const {
-		register,
-		handleSubmit,
+	const { user } = useAuth();
+	// const { displayName, email } = user;
+	console.log(user);
+	const [className, setClassName] = useState("");
+	const [photoURL, setPhotoURL] = useState(""); // Initialize with an empty string
+	const [availableSeats, setAvailableSeats] = useState("");
+	const [price, setPrice] = useState("");
+	const [errors, setErrors] = useState({});
 
-		formState: { errors },
-	} = useForm();
+	const onSubmit = (e) => {
+		e.preventDefault();
 
-	const onSubmit = (data) => {
-		const formData = new FormData();
-		formData.append("image", data.picture[0]);
+		const data = {
+			name: user.displayName,
+			email: user.email,
+			class_name: className,
+			feedback: "",
+			totalEnrolled: 0,
+			status: "pending",
+			rating: 4.5,
+			price: parseInt(price),
+			available_seats: parseInt(availableSeats),
+			picture: photoURL,
+		};
 
-		data.feedback = "";
-		data.totalEnrolled = 0;
-		data.status = "pending";
-		data.rating = 4.6;
-		data.price = parseInt(data.price);
-		data.available_seats = parseInt(data.available_seats);
+		let formErrors = {};
 
-		axios.post(formData).then((res) => {
-			if (res.data.data.display_url) {
-				data.picture = res.data.data.display_url;
-				axiosSecure.post("/AddInstructores", data).then((res) => {
-					if (res.data.insertedId) {
-						Swal.fire({
-							position: "top-end",
-							icon: "success",
-							title: "Add Class success",
-							showConfirmButton: false,
-							timer: 1500,
-						});
-					}
-				});
-			}
-		});
+		// Perform form validation and update errors
+		if (!className) {
+			formErrors.class_name = "Class Name is required";
+		}
+		if (!photoURL) {
+			formErrors.picture = "Picture is required";
+		}
+		if (!availableSeats) {
+			formErrors.available_seats = "Available Seats is required";
+		}
+		if (!price) {
+			formErrors.price = "Price is required";
+		}
+
+		if (Object.keys(formErrors).length === 0) {
+			axiosSecure.post("/addInstructor", data).then((res) => {
+				if (res.data.insertedId) {
+					Swal.fire({
+						position: "top-end",
+						icon: "success",
+						title: "Add Class success",
+						showConfirmButton: false,
+						timer: 1500,
+					});
+				}
+			});
+		} else {
+			setErrors(formErrors);
+		}
 	};
 
-	const displayName = user?.displayName;
-	const email = user?.email;
-
 	return (
-		<div className="w-full">
-			<div className="max-w-lg mx-auto">
-				<h1 className="textPrimary text-center mb-4">Add a Class</h1>
-				<form onSubmit={handleSubmit(onSubmit)}>
+		<div className="w-full h-full my-12">
+			<div className="max-w-lg mx-auto border shadow-xl shadow-slate-400 border-green-600 p-6 m-6">
+				<h1 className="text-green-400  bg-white font-serif font-semibold text-2xl  text-center mb-4">
+					Add a Instructor Class
+				</h1>
+				<form onSubmit={onSubmit}>
 					<div className="mb-4">
 						<label htmlFor="class_name" className="block mb-1">
 							Class Name
@@ -61,26 +79,30 @@ const AddInstructor = () => {
 						<input
 							type="text"
 							id="class_name"
-							className="border border-gray-300 p-2 w-full"
-							{...register("class_name", { required: true })}
+							placeholder="Class Name"
+							className="shadow-md shadow-lime-900 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
+							value={className}
+							onChange={(e) => setClassName(e.target.value)}
 						/>
 						{errors.class_name && (
-							<span className="text-red-500">Class Name is required</span>
+							<span className="text-red-500">{errors.class_name}</span>
 						)}
 					</div>
 
 					<div className="mb-4">
 						<label htmlFor="picture" className="block mb-1">
-							Picture
+							Picture URL
 						</label>
 						<input
-							type="file"
-							id="picture"
-							className="border border-gray-300 p-2 w-full"
-							{...register("picture", { required: true })}
+							className="shadow-md shadow-lime-900 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
+							name="photoURL"
+							type="text"
+							value={photoURL}
+							onChange={(e) => setPhotoURL(e.target.value)}
+							placeholder="Photo URL"
 						/>
 						{errors.picture && (
-							<span className="text-red-500">Picture is required</span>
+							<span className="text-red-500">{errors.picture}</span>
 						)}
 					</div>
 
@@ -91,10 +113,9 @@ const AddInstructor = () => {
 						<input
 							type="text"
 							id="instructor"
-							className="border border-gray-300 p-2 w-full"
-							value={displayName}
+							className="shadow-md shadow-lime-900 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
+							value={user.displayName}
 							readOnly
-							{...register("instructor", { required: true })}
 						/>
 					</div>
 
@@ -105,10 +126,9 @@ const AddInstructor = () => {
 						<input
 							type="email"
 							id="instructor_email"
-							className="border border-gray-300 p-2 w-full"
-							value={email}
+							className="shadow-md shadow-lime-900 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
+							value={user.email}
 							readOnly
-							{...register("instructor_email", { required: true })}
 						/>
 					</div>
 
@@ -119,11 +139,13 @@ const AddInstructor = () => {
 						<input
 							type="number"
 							id="available_seats"
-							className="border border-gray-300 p-2 w-full"
-							{...register("available_seats", { required: true })}
+							placeholder="Available Seats"
+							className="shadow-md shadow-lime-900 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
+							value={availableSeats}
+							onChange={(e) => setAvailableSeats(e.target.value)}
 						/>
 						{errors.available_seats && (
-							<span className="text-red-500">Available Seats is required</span>
+							<span className="text-red-500">{errors.available_seats}</span>
 						)}
 					</div>
 
@@ -134,16 +156,21 @@ const AddInstructor = () => {
 						<input
 							type="number"
 							id="price"
-							className="border border-gray-300 p-2 w-full"
-							{...register("price", { required: true })}
+							className="shadow-md shadow-lime-900 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
+							value={price}
+							placeholder="Price"
+							onChange={(e) => setPrice(e.target.value)}
 						/>
 						{errors.price && (
-							<span className="text-red-500">Price is required</span>
+							<span className="text-red-500">{errors.price}</span>
 						)}
 					</div>
 
-					<button type="submit" className="btnPrimary w-full">
-						Add
+					<button
+						type="submit"
+						className=" rounded-full shadow-slate-400 shadow-lg    bg-green-400 text-white h-12 w-full font-serif font-semibold text-lg "
+					>
+						Add Instructor
 					</button>
 				</form>
 			</div>

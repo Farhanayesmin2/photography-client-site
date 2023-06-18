@@ -7,14 +7,16 @@ import AdminSideBar from "../Pages/SideBar/AdminSideBar/AdminSideBar";
 import InstructorSideBar from "../Pages/SideBar/InstructorSideBar/InstructorSideBar";
 import UserSideBar from "../Pages/SideBar/UserSideBar/UserSideBar";
 
-import { useContext } from "react";
-import { AuthContext } from "../Context/AuthContext";
+// import { useContext } from "react";
+// import { AuthContext } from "../Context/AuthContext";
 import useInstructors from "../Hooks/dashHooks/useInstructors";
+import useAuth from "../Hooks/useAuth";
 
 const DashboardLayout = () => {
 	const [isAdmin] = useAdmin();
 	const [isInstructor] = useInstructors();
-	const { user } = useContext(AuthContext);
+	const { user } = useAuth();
+	console.log(user);
 	return (
 		<div>
 			<DashboardNavbar></DashboardNavbar>
@@ -34,7 +36,7 @@ const DashboardLayout = () => {
 						<InstructorSideBar></InstructorSideBar>
 					</>
 				)}
-				{user && (
+				{!isAdmin && !isInstructor && user && (
 					<>
 						<UserSideBar></UserSideBar>
 					</>

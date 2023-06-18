@@ -1,13 +1,15 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
 
 const DashboardNavbar = () => {
 	const { user, logOut } = useContext(AuthContext);
+	const location = useLocation();
 	const handleLogOut = () => {
 		logOut()
 			.then(() => {})
 			.catch((err) => console.log(err));
+		return <Navigate to="/" state={{ from: location }} replace></Navigate>;
 	};
 	const menuItems = (
 		<>

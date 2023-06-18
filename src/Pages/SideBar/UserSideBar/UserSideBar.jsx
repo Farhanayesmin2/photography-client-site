@@ -8,18 +8,20 @@ import { AuthContext } from "../../../Context/AuthContext";
 
 const UserSideBar = () => {
 	const { user } = useContext(AuthContext);
-
+	console.log(user);
 	return (
 		<div>
 			<div className="h-full p-3 space-y-2 w-60 dark:bg-gray-900 dark:text-gray-100">
 				<div className="flex items-center p-2 space-x-4">
 					<img
-						src={user.photoURL ? user.photoURL : profile}
+						src={user ? user.photoURL : profile}
 						alt=""
 						className="w-12 h-12 rounded-full dark:bg-gray-500"
 					/>
 					<div>
-						<h2 className="text-sm font-semibold">{user.email}</h2>
+						<h2 className="text-sm font-semibold">
+							{user ? user.email : "Not found"}
+						</h2>
 						<span className="flex items-center space-x-1">
 							<a
 								rel="noopener noreferrer"
@@ -64,6 +66,11 @@ const UserSideBar = () => {
 							<li>
 								<Link className="flex items-center" to="/dashboard/myenroll">
 									<FaCartArrowDown className="" /> My Enroll class
+								</Link>
+							</li>
+							<li>
+								<Link className="flex items-center" to="/dashboard/mypayment">
+									<FaCartArrowDown className="" /> My Payment History
 								</Link>
 							</li>
 						</ul>

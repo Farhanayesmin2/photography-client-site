@@ -5,6 +5,7 @@ import { useContext } from "react";
 
 import profile from "../../../assets/images (1) (1).jpeg";
 import { AuthContext } from "../../../Context/AuthContext";
+
 const InstructorSideBar = () => {
 	const { user } = useContext(AuthContext);
 	console.log(user);
@@ -53,12 +54,12 @@ const InstructorSideBar = () => {
 						<ul className="menu ">
 							{/* Instructor routes */}
 							<li>
-								<Link to="/dashboard/add-class" className="flex items-center">
+								<Link to="/dashboard/addclass" className="flex items-center">
 									<FaHome className="mr-3" /> Add Class
 								</Link>
 							</li>
 							<li>
-								<Link to="/dashboard/my-class" className="flex items-center">
+								<Link to="/dashboard/myclass" className="flex items-center">
 									<FaPeopleArrows className="mr-3" /> My Class
 								</Link>
 							</li>

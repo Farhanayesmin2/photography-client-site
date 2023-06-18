@@ -1,14 +1,17 @@
 
 
 import { useQuery } from "@tanstack/react-query";
+// import { useContext } from "react";
+// import { AuthContext } from "../../Context/AuthContext";
+import useAxiosSecure from "../UseAxiosSecure";
+import useAuth from "../useAuth";
 import { useContext } from "react";
 import { AuthContext } from "../../Context/AuthContext";
-import useAxiosSecure from "../UseAxiosSecure";
 
 const useInstructor = () => {
-	const auth = useContext(AuthContext);
-  const { user, loading } = auth;
-//	console.log("file: useAdmin.js:29 ~ useAdmin ~ user, loading:", user, loading, auth)
+	const { user }  = useAuth();
+  const {  loading } = useContext(AuthContext);
+	console.log("file: useAdmin.js:29 ~ useAdmin ~ user, loading:", user, loading)
 	const [axiosSecure] = useAxiosSecure();
 
 	const { data: isInstructor, isLoading: isInstructorLoading } = useQuery({

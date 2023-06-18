@@ -30,6 +30,7 @@ https://daisyui.com/docs/install/
 - for query i use TanStackQuery npm i @tanstack/react-query
 - for fast and secure api npm install axios
 - npm i sweetalert2
+- For Date pick npm install moment
   Admin: admin@gmail.com password: Admin1@
   \*\*\* Live Link: https://photography-school-634e6.web.app/
   // Code ----> 1. Client code: https://github.com/programming-hero-web-course1/b712-summer-camp-client-side-Farhanayesmin2

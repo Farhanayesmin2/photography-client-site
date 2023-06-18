@@ -11,8 +11,7 @@ import toast, { Toaster } from "react-hot-toast";
 
 import { MdClose, MdShoppingCart } from "react-icons/md";
 import Swal from "sweetalert2";
-
-import { AuthContext } from "../../Context/AuthContext";
+import { AuthContext } from "../../../../Context/AuthContext";
 
 const MyClass = () => {
 	const [myclassData, setmyclassData] = useState([]);

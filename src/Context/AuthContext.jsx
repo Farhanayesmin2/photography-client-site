@@ -10,12 +10,13 @@ import {
 	GoogleAuthProvider,
 	signInWithPopup,
 } from "firebase/auth";
+
 import axios from "axios";
 import { app } from "../Firebase/firebase.config";
 
 export const AuthContext = createContext(null);
 const auth = getAuth(app);
-
+console.log(auth);
 const AuthProvider = ({ children }) => {
 	const [user, setUser] = useState(null);
 	const [loading, setLoading] = useState(true);
@@ -26,7 +27,7 @@ const AuthProvider = ({ children }) => {
 		setLoading(true);
 		return createUserWithEmailAndPassword(auth, email, password);
 	};
-	const userProfile = (name, photo) => {
+	const updateUserProfile = (name, photo) => {
 		setLoading(true);
 		return updateProfile(auth.currentUser, {
 			displayName: name,
@@ -48,6 +49,7 @@ const AuthProvider = ({ children }) => {
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
 			setUser(user);
+			console.log(user);
 			if (user) {
 				axios
 					.post("http://localhost:4000/jwt", {
@@ -57,6 +59,10 @@ const AuthProvider = ({ children }) => {
 						localStorage.setItem("access_token", res.data.token);
 						setLoading(false);
 					});
+
+				// Access the user's display name here
+				const displayName = user.displayName;
+				console.log("Display Name:", displayName);
 			} else {
 				localStorage.removeItem("access_token");
 			}
@@ -64,6 +70,7 @@ const AuthProvider = ({ children }) => {
 
 		return unsubscribe;
 	}, []);
+
 	const Spinner = () => {
 		return (
 			<div className="text-center w-52">
@@ -75,12 +82,12 @@ const AuthProvider = ({ children }) => {
 			</div>
 		);
 	};
-
+	console.log(user);
 	const authInfo = {
 		user,
 		loading,
 		createUser,
-		userProfile,
+		updateUserProfile,
 		signInWithGoogle,
 		signIn,
 		logOut,

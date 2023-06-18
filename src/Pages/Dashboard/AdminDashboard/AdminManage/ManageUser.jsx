@@ -1,14 +1,14 @@
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt, FaUserCog, FaUserShield } from "react-icons/fa";
 import Swal from "sweetalert2";
-import useAxiosSecure from "../../Hooks/UseAxiosSecure";
 import { useContext } from "react";
-import { AuthContext } from "../../Context/AuthContext";
+import useAxiosSecure from "../../../../Hooks/UseAxiosSecure";
+import { AuthContext } from "../../../../Context/AuthContext";
 
 const AllUsers = () => {
 	const [axiosSecure] = useAxiosSecure();
 	const { Spinner } = useContext(AuthContext);
-	// const [myuserData, setmyuserData] = useState([]);
+
 	const {
 		data: users = [],
 		isLoading,
@@ -98,7 +98,7 @@ const AllUsers = () => {
 
 			if (result.isConfirmed) {
 				// Send DELETE request to the server
-				await fetch(`http://localhost:4000/dashboard/users/${myuserId}`, {
+				await fetch(`http://localhost:4000/users/${myuserId}`, {
 					method: "DELETE",
 				});
 

@@ -2,7 +2,7 @@ import { Elements } from "@stripe/react-stripe-js";
 import { loadStripe } from "@stripe/stripe-js";
 
 import { useLoaderData, useNavigation } from "react-router-dom";
-import CheckOutPayment from "./CheckOutPayment";
+import CheckOutPayment from "../CheckOutPayment/CheckOutPayment";
 
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
 

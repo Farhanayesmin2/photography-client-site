@@ -2,10 +2,11 @@ import { useContext, useState } from "react";
 
 import { Link, useNavigate } from "react-router-dom";
 
-import toast, { Toaster } from "react-hot-toast";
-
 import { Player } from "@lottiefiles/react-lottie-player";
 import { AuthContext } from "../../Context/AuthContext";
+import axios from "axios";
+import Swal from "sweetalert2";
+
 const Register = () => {
 	const [name, setName] = useState("");
 	const [email, setEmail] = useState("");
@@ -21,9 +22,15 @@ const Register = () => {
 
 	console.log(name, email, password, photoURL);
 
-	const { createUser, userProfile, signInWithGoogle, logOut, setUser } =
-		useContext(AuthContext);
-
+	const {
+		auth,
+		createUser,
+		updateUserProfile,
+		signInWithGoogle,
+		logOut,
+		setUser,
+	} = useContext(AuthContext);
+	console.log(auth);
 	const handleSubmit = (e) => {
 		e.preventDefault();
 		const form = e.target;
@@ -35,39 +42,69 @@ const Register = () => {
 			e.target.password.focus();
 			return;
 		}
-		// Update user profile with name and photo
-		userProfile(name, photoURL)
-			.then(() => {
-				console.log(name);
-				setErrorMessage("");
-			})
-			.catch((error) => {
-				setErrorMessage(error.message);
-			});
-		// Create a new user with email and password
-		createUser(email, password)
-			.then((result) => {
-				const loggedUser = result.user;
-				const account_create_time = new Date().toLocaleString();
-				setUser(loggedUser);
-				// Reset form and clear inputs
-				form.reset();
-				logOut();
-				// Display success message using toast
-				toast.success("Successfully Registered!");
-				// Redirect to the login page\
-				if (toast.success) {
-					navigate("/login");
-					// !errorMessage ||
-				}
 
-				console.log(navigate);
-				saveUser(name, email, photoURL, account_create_time);
+		//	Update user profile with name and photo
+		// 	updateUserProfile(name, photoURL).then(() => {
+		// 		setErrorMessage("");
+		// 		// Create a new user with email and password
+		// 		return createUser(email, password);
+		// 	});
+		// 	// Create a new user with email and password
+		// 	console.log(name, photoURL);
+		// 	createUser(email, password)
+		// 		.then((result) => {
+		// 			const loggedUser = result.user;
+		// 			console.log(loggedUser);
+		// 			const account_create_time = new Date().toLocaleString();
+		// 			setUser(loggedUser);
+		// 			// Reset form and clear inputs
+		// 			form.reset();
+		// 			logOut();
+		// 			// Display success message using toast
+		// 			toast.success("Successfully Registered!");
+		// 			// Redirect to the login page\
+		// 			if (toast.success) {
+		// 				navigate("/login");
+		// 				// !errorMessage ||
+		// 			}
+
+		// 			console.log(navigate);
+		// 			saveUser(name, email, photoURL, account_create_time);
+		// 		})
+		// 		.catch((error) => {
+		// 			// Display error message using toast
+		// 			console.error(error);
+		// 			toast.error(error.message);
+		// 		});
+		// };
+
+		createUser(email, password)
+			.then(() => {
+				updateUserProfile(name, photoURL)
+					.then(() => {
+						axios
+							.post("http://localhost:4000/users", {
+								name: name,
+								photoURL: photoURL,
+								email: email,
+								role: "student",
+							})
+							.then((data) => {
+								if (data.data.insertedId) {
+									Swal.fire({
+										icon: "success",
+										title: "Successfully Register",
+									});
+									form.reset();
+									logOut();
+									navigate("/login");
+								}
+							});
+					})
+					.catch(() => {});
 			})
-			.catch((error) => {
-				// Display error message using toast
-				console.error(error);
-				toast.error(error.message);
+			.catch((err) => {
+				setErrorMessage(err.message);
 			});
 	};
 	const handleEmail = (e) => {
@@ -119,25 +156,25 @@ const Register = () => {
 	const isSubmitDisabled =
 		!name || !email || !password || !conpassword || !photoURL;
 
-	const saveUser = (name, email, photoURL, account_create_time) => {
-		const user = {
-			name: name,
-			email: email,
-			photoURL: photoURL,
-			account_create_time,
-		};
-		fetch("http://localhost:4000/users", {
-			method: "POST",
-			headers: {
-				"content-type": "application/json",
-			},
-			body: JSON.stringify(user),
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				console.log("save user", data);
-			});
-	};
+	// const saveUser = (name, email, photoURL, account_create_time) => {
+	// 	const user = {
+	// 		name: name,
+	// 		email: email,
+	// 		photoURL: photoURL,
+	// 		account_create_time,
+	// 	};
+	// 	fetch("http://localhost:4000/users", {
+	// 		method: "POST",
+	// 		headers: {
+	// 			"content-type": "application/json",
+	// 		},
+	// 		body: JSON.stringify(user),
+	// 	})
+	// 		.then((res) => res.json())
+	// 		.then((data) => {
+	// 			console.log("save user", data);
+	// 		});
+	// };
 
 	return (
 		<div>
@@ -166,7 +203,7 @@ const Register = () => {
 										</label>
 										<input
 											className="shadow-md shadow-lime-900    focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
-											type="name"
+											type="text"
 											name="name"
 											placeholder="Name"
 											value={name}
@@ -362,60 +399,8 @@ const Register = () => {
 					</div>
 				</div>
 			</div>
-			<Toaster
-				position="top-center"
-				reverseOrder={false}
-				gutter={8}
-				containerClassName=""
-				containerStyle={{}}
-				toastOptions={{
-					// Define default options
-					className: "",
-					duration: 5000,
-					style: {
-						background: "#363636",
-						color: "#fff",
-					},
-
-					// Default options for specific types
-					success: {
-						duration: 3000,
-						theme: {
-							primary: "green",
-							secondary: "black",
-						},
-					},
-				}}
-			/>
 		</div>
 	);
 };
 
 export default Register;
-{
-	/* account types */
-}
-{
-	/*
-		const [account_type, setAccount_type] = useState("");
-		 <div className="relative">
-			<label
-				htmlFor="account-type"
-className="text-gray-600 dark:text-gray-300">
-Account Type
-</label>
-<input
-className="shadow-md shadow-lime-900 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
-name="account_type"
-type="text"
-											value={account_type}
-											onChange={(e) => setAccount_type(e.target.value)}
-											placeholder="Account Type"
-											list="account-types"
-										/>
-										<datalist id="account-types">
-											<option value="Buyer Account" />
-											<option value="Seller Account" />
-										</datalist>
-									</div> */
-}
