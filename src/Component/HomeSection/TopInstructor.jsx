@@ -55,7 +55,7 @@ const TopInstructor = () => {
 							<p className="mt-2 text-gray-600">{instructor.description}</p>
 						</div>
 						<div className="flex justify-end mt-4">
-							<a href="#" className="text-sm font-medium text-indigo-500">
+							<a href="#" className="text-sm font-semibold text-cyan-500">
 								{instructor.className}
 							</a>
 						</div>

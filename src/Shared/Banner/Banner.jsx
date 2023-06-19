@@ -111,12 +111,12 @@ const Banner = () => {
 						</div>
 
 						<div className="relative col-span-1">
-							<h1 className="font-bold text-[#374151] text-5xl sm:text-6xl md:text-7xl xl:text-8xl dark:text-white">
+							<h1 className="font-bold text-gray-600 text-5xl sm:text-6xl md:text-7xl xl:text-8xl dark:text-white">
 								A Look for every{" "}
 								<span className="text-cyan-400 dark:text-cyan-400">mood</span>.
 							</h1>
 							<div className="mt-8 lg:mt-16 space-y-8">
-								<p className="text-gray-700 dark:text-gray-300">
+								<p className="text-gray-400 dark:text-gray-300">
 									Photography as a hobby can bring more excitement to your life.
 									You will be more active, more creative, and more knowledgeable
 									about photography.

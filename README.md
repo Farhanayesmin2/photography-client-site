@@ -31,6 +31,7 @@ https://daisyui.com/docs/install/
 - for fast and secure api npm install axios
 - npm i sweetalert2
 - For Date pick npm install moment
+- animation npm install react-awesome-reveal @emotion/react
   Admin: admin@gmail.com password: Admin1@
   \*\*\* Live Link: https://photography-school-634e6.web.app/
   // Code ----> 1. Client code: https://github.com/programming-hero-web-course1/b712-summer-camp-client-side-Farhanayesmin2
