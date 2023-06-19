@@ -7,7 +7,7 @@ const BigButton = () => {
 				</button>
 			</div> */}
 			<div className="">
-				<button className=" bg-lime-600 px-4 py-3 font-serif font-semibold text-lg rounded-full text-white hover:text-black hover:shadow-[inset_16rem_0_0_0] hover:shadow-green-300  duration-[400ms,700ms] transition-[color,box-shadow]">
+				<button className=" bg-cyan-500 px-4 py-3 font-serif font-semibold text-lg rounded-full text-white hover:text-black hover:shadow-[inset_16rem_0_0_0] hover:shadow-gray-200  duration-[400ms,700ms] transition-[color,box-shadow]">
 					{" "}
 					Explore More{" "}
 				</button>

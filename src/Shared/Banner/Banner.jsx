@@ -3,7 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
+import banner from "./banner.css";
 // import required modules
 import { Autoplay, Pagination, Navigation } from "swiper";
 import BigButton from "../Button/BigButton/BigButton";
@@ -17,7 +17,7 @@ const Banner = () => {
 				<div className="container m-auto px-6 pt-24 md:px-12  lg:pt-[4.8rem] lg:px-7">
 					<div className="grid lg:grid-cols-2 items-center gap-12 px-2 md:px-0">
 						<div className="col-span-1">
-							<div className="relative w-full">
+							<div className="relative lg:w-full">
 								<Swiper
 									spaceBetween={30}
 									centeredSlides={true}
@@ -37,7 +37,7 @@ const Banner = () => {
 											src="https://images.pexels.com/photos/1264210/pexels-photo-1264210.jpeg?auto=compress&cs=tinysrgb&w=600"
 											alt="shoes"
 											loading="lazy"
-											width="100%"
+											className="lg:w-[100%] sm:w-[70%] md:w-[70%]"
 											height="640"
 										/>
 									</SwiperSlide>
@@ -46,7 +46,7 @@ const Banner = () => {
 											src="https://images.pexels.com/photos/212372/pexels-photo-212372.jpeg?auto=compress&cs=tinysrgb&w=600"
 											alt="shoes"
 											loading="lazy"
-											width="100%"
+											className="lg:w-[100%] sm:w-[70%] md:w-[70%]"
 											height="640"
 										/>
 									</SwiperSlide>
@@ -56,7 +56,7 @@ const Banner = () => {
 											src="https://images.pexels.com/photos/225157/pexels-photo-225157.jpeg?auto=compress&cs=tinysrgb&w=600"
 											alt="shoes"
 											loading="lazy"
-											width="100%"
+											className="lg:w-[100%] sm:w-[70%] md:w-[70%]"
 											height="640"
 										/>
 									</SwiperSlide>
@@ -65,7 +65,7 @@ const Banner = () => {
 											src="https://images.pexels.com/photos/403495/pexels-photo-403495.jpeg?auto=compress&cs=tinysrgb&w=600"
 											alt="shoes"
 											loading="lazy"
-											width="100%"
+											className="lg:w-[100%] sm:w-[70%] md:w-[70%]"
 											height="640"
 										/>
 									</SwiperSlide>
@@ -111,14 +111,15 @@ const Banner = () => {
 						</div>
 
 						<div className="relative col-span-1">
-							<h1 className="font-bold text-5xl sm:text-6xl md:text-7xl xl:text-8xl dark:text-white">
+							<h1 className="font-bold text-[#374151] text-5xl sm:text-6xl md:text-7xl xl:text-8xl dark:text-white">
 								A Look for every{" "}
-								<span className="text-lime-800 dark:text-lime-400">mood</span>.
+								<span className="text-cyan-400 dark:text-cyan-400">mood</span>.
 							</h1>
 							<div className="mt-8 lg:mt-16 space-y-8">
 								<p className="text-gray-700 dark:text-gray-300">
-									Sit amet consectetur adipisicing elit. eligendi tenetur nihil
-									quaerat suscipit, sunt dignissimos.
+									Photography as a hobby can bring more excitement to your life.
+									You will be more active, more creative, and more knowledgeable
+									about photography.
 								</p>
 								<div className="flex items-center  space-x-4 mt-6">
 									<Link to="/">

@@ -5,7 +5,7 @@ import { AuthContext } from "../../Context/AuthContext";
 import profile from "../../assets/images (1) (1).jpeg";
 const NavMenu = () => {
 	const { user, logOut } = useContext(AuthContext);
-	console.log("file: NavMenu.jsx:8 ~ NavMenu ~ user:", user);
+
 	const [isOpen, setIsOpen] = useState(false);
 	const [isDarkMode, setIsDarkMode] = useState(false);
 	useEffect(() => {
@@ -26,15 +26,15 @@ const NavMenu = () => {
 
 	return (
 		<div>
-			<nav className="  shadow-md font-sans w-full">
+			<nav className="  shadow-md font-sans w-[100%] ">
 				<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 					<div className="flex items-center justify-between h-16">
 						<div className="flex items-center">
-							<div className="text-2xl  text-[#57D657] hidden lg:block from-current font-poppins ">
+							<div className="text-xl  text-cyan-400 hidden lg:block from-current font-mono ">
 								<span className="flex justify-center h-8  items-center font-bold">
 									<img
 										src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQxhvtSBGg7erRpwPLpUSZcO6P5XOekHttUNA&usqp=CAU"
-										className="flex justify-center h-16   items-center font-bold"
+										className="flex justify-center h-16  rounded-full items-center font-bold"
 									/>
 									School Photography{" "}
 								</span>
@@ -47,26 +47,26 @@ const NavMenu = () => {
 										<NavLink
 											style={({ isActive }) => {
 												return {
-													borderBottom: isActive ? "5px solid red" : "none",
-													color: isActive ? "#c09da9" : "#57D657",
+													borderBottom: isActive ? "5px solid #22d3ee" : "none",
+													color: isActive ? "#4b5563" : "#22d3ee",
 												};
 											}}
 											to="/"
-											className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
-											activeClassName="border-current text-red-700"
+											className="text-black border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-#22d3ee-700 active:text-#22d3ee-700"
+											activeClassName="border-current text-#22d3ee-700"
 										>
 											Home
 										</NavLink>
 										<NavLink
 											style={({ isActive }) => {
 												return {
-													borderBottom: isActive ? "5px solid red" : "none",
-													color: isActive ? "#c09da9" : "#57D657",
+													borderBottom: isActive ? "5px solid #22d3ee" : "none",
+													color: isActive ? "#4b5563" : "#22d3ee",
 												};
 											}}
 											to="/instructors"
-											className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
-											activeClassName="border-current text-red-700"
+											className="text-[#22d3ee] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-#22d3ee-700 active:text-#22d3ee-700"
+											activeClassName="border-current text-#22d3ee-700"
 										>
 											Instructors
 										</NavLink>
@@ -74,39 +74,39 @@ const NavMenu = () => {
 										<NavLink
 											style={({ isActive }) => {
 												return {
-													borderBottom: isActive ? "5px solid red" : "none",
-													color: isActive ? "#c09da9" : "#57D657",
+													borderBottom: isActive ? "5px solid #22d3ee" : "none",
+													color: isActive ? "#4b5563" : "#22d3ee",
 												};
 											}}
 											to="/classes"
-											className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#c09da9] active:text-[#c09da9]"
-											activeClassName="border-current text-red-700"
+											className="text-[#22d3ee] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#4b5563] active:text-[#4b5563]"
+											activeClassName="border-current text-#22d3ee-700"
 										>
 											Classes
 										</NavLink>
 										<NavLink
 											style={({ isActive }) => {
 												return {
-													borderBottom: isActive ? "5px solid red" : "none",
-													color: isActive ? "#c09da9" : "#57D657",
+													borderBottom: isActive ? "5px solid #22d3ee" : "none",
+													color: isActive ? "#4b5563" : "#22d3ee",
 												};
 											}}
 											to="/blog"
-											className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
-											activeClassName="border-current text-red-700"
+											className="text-[#22d3ee] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-#22d3ee-700 active:text-#22d3ee-700"
+											activeClassName="border-current text-#22d3ee-700"
 										>
 											Blog
 										</NavLink>
 										<NavLink
 											style={({ isActive }) => {
 												return {
-													borderBottom: isActive ? "5px solid red" : "none",
-													color: isActive ? "#c09da9" : "#57D657",
+													borderBottom: isActive ? "5px solid #22d3ee" : "none",
+													color: isActive ? "#4b5563" : "#22d3ee",
 												};
 											}}
 											to="/dashboard"
-											className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
-											activeClassName="border-current text-red-700"
+											className="text-[#22d3ee] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-#22d3ee-700 active:text-#22d3ee-700"
+											activeClassName="border-current text-#22d3ee-700"
 										>
 											Dashboard
 										</NavLink>
@@ -116,39 +116,39 @@ const NavMenu = () => {
 										<NavLink
 											style={({ isActive }) => {
 												return {
-													borderBottom: isActive ? "5px solid red" : "none",
-													color: isActive ? "#c09da9" : "#57D657",
+													borderBottom: isActive ? "5px solid #22d3ee" : "none",
+													color: isActive ? "#4b5563" : "#22d3ee",
 												};
 											}}
 											to="/"
-											className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#c09da9] active:text-[#c09da9]"
-											activeClassName="border-current text-red-700"
+											className="text-[#22d3ee] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-[#4b5563] active:text-[#4b5563]"
+											activeClassName="border-current text-#22d3ee-700"
 										>
 											Home
 										</NavLink>
 										<NavLink
 											style={({ isActive }) => {
 												return {
-													borderBottom: isActive ? "5px solid red" : "none",
-													color: isActive ? "#c09da9" : "#57D657",
+													borderBottom: isActive ? "5px solid #22d3ee" : "none",
+													color: isActive ? "#4b5563" : "#22d3ee",
 												};
 											}}
 											to="/blog"
-											className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
-											activeClassName="border-current text-red-700"
+											className="text-[#22d3ee] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-#22d3ee-700 active:text-#22d3ee-700"
+											activeClassName="border-current text-#22d3ee-700"
 										>
 											Blog
 										</NavLink>
 										<NavLink
 											style={({ isActive }) => {
 												return {
-													borderBottom: isActive ? "5px solid red" : "none",
-													color: isActive ? "#c09da9" : "#57D657",
+													borderBottom: isActive ? "5px solid #22d3ee" : "none",
+													color: isActive ? "#4b5563" : "#22d3ee",
 												};
 											}}
 											to="/alltoys"
-											className="text-[#57D657] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-red-700 active:text-red-700"
-											activeClassName="border-current text-red-700"
+											className="text-[#22d3ee] border-b-4 border-transparent leading-[4rem] hover:border-current hover:text-#22d3ee-700 active:text-#22d3ee-700"
+											activeClassName="border-current text-#22d3ee-700"
 										>
 											All Toys
 										</NavLink>
@@ -192,7 +192,7 @@ const NavMenu = () => {
 										</button>
 										<Link
 											onClick={logOut}
-											className="py-2  mx-1 px-4 bg-gradient-to-r from-lime-700 via-lime-50 to-lime-700 text-black font-semibold rounded-lg shadow-md hover:bg-[#c09da9] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+											className="py-2  mx-1 px-4 bg-gradient-to-r from-cyan-400 via-cyan-50 to-cyan-400 text-black font-semibold rounded-lg shadow-md hover:bg-[#4b5563] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
 										>
 											<button className="">LogOut</button>
 										</Link>
@@ -273,52 +273,52 @@ const NavMenu = () => {
 									<NavLink
 										style={({ isActive }) => {
 											return {
-												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#57D657",
+												borderBottom: isActive ? "5px solid #22d3ee" : "none",
+												color: isActive ? "#4b5563" : "#22d3ee",
 											};
 										}}
 										to="/"
-										className="text-[#57D657] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-red-700 active:text-red-700"
-										activeClassName="border-current text-red-700"
+										className="text-[#22d3ee] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-#22d3ee-700 active:text-#22d3ee-700"
+										activeClassName="border-current text-#22d3ee-700"
 									>
 										Home
 									</NavLink>
 									<NavLink
 										style={({ isActive }) => {
 											return {
-												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#57D657",
+												borderBottom: isActive ? "5px solid #22d3ee" : "none",
+												color: isActive ? "#4b5563" : "#22d3ee",
 											};
 										}}
 										to="/chef"
-										className="text-[#57D657] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-red-700 active:text-red-700"
-										activeClassName="border-current text-red-700"
+										className="text-[#22d3ee] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-#22d3ee-700 active:text-#22d3ee-700"
+										activeClassName="border-current text-#22d3ee-700"
 									>
 										All Chef
 									</NavLink>
 									<NavLink
 										style={({ isActive }) => {
 											return {
-												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#57D657",
+												borderBottom: isActive ? "5px solid #22d3ee" : "none",
+												color: isActive ? "#4b5563" : "#22d3ee",
 											};
 										}}
 										to="/restaurant"
-										className="text-[#57D657] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-red-700 active:text-red-700"
-										activeClassName="border-current text-red-700"
+										className="text-[#22d3ee] border-b-4 border-transparent leading-[3rem]  hover:border-current hover:text-#22d3ee-700 active:text-#22d3ee-700"
+										activeClassName="border-current text-#22d3ee-700"
 									>
 										Restaurant
 									</NavLink>
 									<NavLink
 										style={({ isActive }) => {
 											return {
-												borderBottom: isActive ? "5px solid red" : "none",
-												color: isActive ? "#c09da9" : "#57D657",
+												borderBottom: isActive ? "5px solid #22d3ee" : "none",
+												color: isActive ? "#4b5563" : "#22d3ee",
 											};
 										}}
 										to="/blog"
-										className="text-[#57D657] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-red-700 active:text-red-700"
-										activeClassName="border-current text-red-700"
+										className="text-[#22d3ee] border-b-4 border-transparent leading-[3rem] hover:border-current hover:text-#22d3ee-700 active:text-#22d3ee-700"
+										activeClassName="border-current text-#22d3ee-700"
 									>
 										Blog
 									</NavLink>
@@ -349,13 +349,13 @@ const NavMenu = () => {
 													</div>
 												</Link>
 											</button>
-											<Link className="py-2  mx-1 px-4 bg-[#57D657] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+											<Link className="py-2  mx-1 px-4 bg-[#22d3ee] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
 												<button className="">LogOut</button>
 											</Link>
 										</div>
 										{/* ) : ( */}
 										<Link
-											className="py-2 mx-1 px-4 bg-[#57D657] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+											className="py-2 mx-1 px-4 bg-[#22d3ee] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
 											to="/login"
 										>
 											<button>Login</button>
@@ -391,13 +391,13 @@ const NavMenu = () => {
 														</div>
 													</Link>
 												</button>
-												<Link className="py-2  mx-1 px-4 bg-[#57D657] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+												<Link className="py-2  mx-1 px-4 bg-[#22d3ee] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
 													<button className="">LogOut</button>
 												</Link>
 											</div>
 
 											<Link
-												className="py-2 mx-1 px-4 bg-[#57D657] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+												className="py-2 mx-1 px-4 bg-[#22d3ee] text-white font-semibold rounded-lg shadow-md hover:bg-rose-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
 												to="/login"
 											>
 												<button>Login</button>

@@ -1,5 +1,4 @@
 import { Link } from "react-router-dom";
-
 import { useQuery } from "@tanstack/react-query";
 import { FaTrashAlt, FaAccessibleIcon } from "react-icons/fa";
 import Swal from "sweetalert2";
@@ -41,8 +40,21 @@ const InstructorClass = () => {
 		});
 	};
 
+	const getStatusColor = (status) => {
+		switch (status) {
+			case "pending":
+				return "text-yellow-500";
+			case "denied":
+				return "text-red-500";
+			case "approved":
+				return "text-green-500";
+			default:
+				return "";
+		}
+	};
+
 	return (
-		<div className="w-full h-screen mt-10">
+		<div className="w-full h-screen my-12">
 			<p className="text-center my-5">
 				<Link
 					className="text-green-400 font-semibold text-2xl font-sherif"
@@ -89,8 +101,8 @@ const InstructorClass = () => {
 									<p>${instructor.price}</p>
 								</td>
 								<td>
-									{instructor.status == "pending" ||
-									instructor.status == "denied" ? (
+									{instructor.status === "pending" ||
+									instructor.status === "denied" ? (
 										<p>Still now {instructor.status} </p>
 									) : (
 										<p>{instructor.totalEnrolled}</p>
@@ -100,11 +112,12 @@ const InstructorClass = () => {
 									<p>{instructor.available_seats}</p>
 								</td>
 								<td>
-									<p>{instructor.status}</p>
+									<p className={getStatusColor(instructor.status)}>
+										{instructor.status}
+									</p>
 								</td>
 								<td>
 									<p>
-										{" "}
 										<FaAccessibleIcon></FaAccessibleIcon> {instructor.feedback}
 									</p>
 								</td>
@@ -112,7 +125,7 @@ const InstructorClass = () => {
 								<td>
 									<button
 										onClick={() => handleDelete(instructor?._id)}
-										className="btn"
+										className="btn text-red-500 hover:text-red-700"
 									>
 										<FaTrashAlt></FaTrashAlt>
 									</button>
@@ -120,9 +133,8 @@ const InstructorClass = () => {
 								<td>
 									<Link
 										to={`/dashboard/update/${instructor?._id}`}
-										className="btn"
+										className="btn bg-[#9d4edd] text-white hover:text-green-600"
 									>
-										{" "}
 										Update
 									</Link>
 								</td>

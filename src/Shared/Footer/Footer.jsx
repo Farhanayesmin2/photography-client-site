@@ -11,7 +11,7 @@ import {
 const Footer = () => {
 	return (
 		<div>
-			<footer className="">
+			<footer className="w-[100%]">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"
 					className="-mb-0.5 w-full"
@@ -40,48 +40,48 @@ const Footer = () => {
 										</span>
 									</div>
 
-									<div className="flex gap-6">
+									<div className="flex lg:gap-6 gap-4">
 										<a
 											href="https://www.facebook.com"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<FaFacebookSquare className="w-8 h-8 text-blue-700 bg-white" />
+											<FaFacebookSquare className=" lg:w-8 lg:lg:h-8 text-blue-700 bg-white" />
 										</a>
 										<a
 											href="https://www.messenger.com"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<FaFacebookMessenger className="w-8 h-8 rounded-3xl text-sky-700 bg-white" />
+											<FaFacebookMessenger className="lg:w-8 lg:h-8 rounded-3xl text-sky-700 bg-white" />
 										</a>
 										<a
 											href="https://www.youtube.com"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<FaYoutubeSquare className="w-8 h-8 text-red-700 bg-white" />
+											<FaYoutubeSquare className="lg:w-8 lg:h-8 text-red-700 bg-white" />
 										</a>
 										<a
 											href="https://www.linkedin.com"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<FaLinkedinIn className="w-8 h-8 rounded-lg text-white bg-blue-800" />
+											<FaLinkedinIn className="lg:w-8 lg:h-8 rounded-lg text-white bg-blue-800" />
 										</a>
 										<a
 											href="https://www.twitter.com"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<FaTwitterSquare className="w-8 h-8 rounded-xl text-sky-500 bg-white" />
+											<FaTwitterSquare className="lg:w-8 lg:h-8 rounded-xl text-sky-500 bg-white" />
 										</a>
 										<a
 											href="https://www.instagram.com"
 											target="_blank"
 											rel="noopener noreferrer"
 										>
-											<FaInstagramSquare className="w-8 h-8 rounded-xl white text-rose-700 bg-white" />
+											<FaInstagramSquare className="lg:w-8 lg:h-8 rounded-xl white text-rose-700 bg-white" />
 										</a>
 									</div>
 								</div>
