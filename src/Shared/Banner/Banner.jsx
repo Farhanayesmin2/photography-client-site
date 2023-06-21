@@ -34,7 +34,7 @@ const Banner = () => {
 								>
 									<SwiperSlide>
 										<img
-											src="https://images.pexels.com/photos/1264210/pexels-photo-1264210.jpeg?auto=compress&cs=tinysrgb&w=600"
+											src="https://i.ibb.co/bHF0z4J/pexels-ike-louie-natividad-6121164.jpg"
 											alt="shoes"
 											loading="lazy"
 											className="lg:w-[100%] sm:w-[70%] md:w-[70%]"
@@ -53,7 +53,7 @@ const Banner = () => {
 
 									<SwiperSlide>
 										<img
-											src="https://images.pexels.com/photos/225157/pexels-photo-225157.jpeg?auto=compress&cs=tinysrgb&w=600"
+											src="https://images.pexels.com/photos/2244330/pexels-photo-2244330.jpeg?auto=compress&cs=tinysrgb&w=600"
 											alt="shoes"
 											loading="lazy"
 											className="lg:w-[100%] sm:w-[70%] md:w-[70%]"
