@@ -1,6 +1,5 @@
 import Gallery from "../../Component/HomeSection/Gallery/Gallery";
 import Provide from "../../Component/HomeSection/Provide/Provide";
-
 import TopInstructor from "../../Component/HomeSection/TopInstructor";
 import Banner from "../../Shared/Banner/Banner";
 

@@ -1,79 +1,58 @@
-//import axios from "axios";
-
-import Swal from "sweetalert2";
-import { useState } from "react";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import { useForm } from "react-hook-form";
 import useAxiosSecure from "../../../../Hooks/UseAxiosSecure";
 import useAuth from "../../../../Hooks/useAuth";
+import Swal from "sweetalert2";
 
-const AddInstructor = () => {
+const Update = () => {
+	const { id } = useParams();
 	const [axiosSecure] = useAxiosSecure();
 	const { user } = useAuth();
-	// const { displayName, email } = user;
-	const name = user ? user.displayName : "Admin";
-	const email = user ? user.email : "admin@gmail.com";
-	console.log(user);
-	const [className, setClassName] = useState("");
-	const [photoURL, setPhotoURL] = useState(""); // Initialize with an empty string
-	const [availableSeats, setAvailableSeats] = useState("");
-	const [price, setPrice] = useState("");
-	const [errors, setErrors] = useState({});
 
-	const onSubmit = (e) => {
-		e.preventDefault();
+	const {
+		register,
+		handleSubmit,
+		formState: { errors },
+	} = useForm();
 
-		const data = {
-			name: name,
-			email: email,
-			class_name: className,
-			feedback: "",
-			totalEnrolled: 0,
-			status: "pending",
-			rating: 4.5,
-			price: parseInt(price),
-			available_seats: parseInt(availableSeats),
-			picture: photoURL,
-		};
+	const { data: instructor = {} } = useQuery({
+		queryKey: ["classData"],
+		queryFn: async () => {
+			const res = await axiosSecure(`/instructor-class?email=${user?.email}`);
+			return res.data;
+		},
+	});
 
-		let formErrors = {};
+	const onSubmit = async (data) => {
+		const { class_name, picture, available_seats, price } = data;
 
-		// Perform form validation and update errors
-		if (!className) {
-			formErrors.class_name = "Class Name is required";
-		}
-		if (!photoURL) {
-			formErrors.picture = "Picture is required";
-		}
-		if (!availableSeats) {
-			formErrors.available_seats = "Available Seats is required";
-		}
-		if (!price) {
-			formErrors.price = "Price is required";
-		}
-
-		if (Object.keys(formErrors).length === 0) {
-			axiosSecure.post("/addInstructor", data).then((res) => {
-				if (res.data.insertedId) {
-					Swal.fire({
-						position: "top-center",
-						icon: "success",
-						title: "Add Class successfully",
-						showConfirmButton: false,
-						timer: 1500,
-					});
-				}
-			});
-		} else {
-			setErrors(formErrors);
+		try {
+			const res = await axiosSecure.patch(`/update/${id}`, data);
+			if (res.data.insertedId) {
+				Swal.fire({
+					position: "top-center",
+					icon: "success",
+					title: "Update successful",
+					showConfirmButton: false,
+					timer: 1500,
+				});
+			}
+			console.log("Update successful");
+			// You can perform additional actions after the update is successful
+		} catch (error) {
+			console.error("Error updating class:", error);
+			// You can handle the error appropriately, such as displaying an error message
 		}
 	};
 
 	return (
 		<div className="w-full h-full my-12">
-			<div className="max-w-lg mx-auto border shadow-lg shadow-cyan-400 border-gray-600 p-6 m-6">
+			<div className="max-w-lg mx-auto border shadow-lg shadow-cyan-400 border-gray-600 p-6 m-6 ">
 				<h1 className="text-cyan-400  bg-white font-serif font-semibold text-2xl  text-center mb-4">
-					Add a Instructor Class
+					You can Update
 				</h1>
-				<form onSubmit={onSubmit}>
+				<form onSubmit={handleSubmit(onSubmit)}>
 					<div className="mb-4">
 						<label htmlFor="class_name" className="block mb-1">
 							Class Name
@@ -82,29 +61,29 @@ const AddInstructor = () => {
 							type="text"
 							id="class_name"
 							placeholder="Class Name"
+							defaultValue={instructor?.class_name}
 							className="shadow-md shadow-cyan-400 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
-							value={className}
-							onChange={(e) => setClassName(e.target.value)}
+							{...register("class_name", { required: true })}
 						/>
 						{errors.class_name && (
-							<span className="text-red-500">{errors.class_name}</span>
+							<span className="text-red-500">Class Name is required</span>
 						)}
 					</div>
 
 					<div className="mb-4">
 						<label htmlFor="picture" className="block mb-1">
-							Picture URL
+							Picture
 						</label>
 						<input
-							className="shadow-md shadow-cyan-400 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
-							name="photoURL"
 							type="text"
-							value={photoURL}
-							onChange={(e) => setPhotoURL(e.target.value)}
-							placeholder="Photo URL"
+							placeholder="Picture"
+							defaultValue={instructor?.picture}
+							id="picture"
+							className="shadow-md shadow-cyan-400 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
+							{...register("picture", { required: true })}
 						/>
 						{errors.picture && (
-							<span className="text-red-500">{errors.picture}</span>
+							<span className="text-red-500">Picture is required</span>
 						)}
 					</div>
 
@@ -116,8 +95,9 @@ const AddInstructor = () => {
 							type="text"
 							id="instructor"
 							className="shadow-md shadow-cyan-400 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
-							value={name}
+							value={user.displayName}
 							readOnly
+							{...register("instructor", { required: true })}
 						/>
 					</div>
 
@@ -129,8 +109,9 @@ const AddInstructor = () => {
 							type="email"
 							id="instructor_email"
 							className="shadow-md shadow-cyan-400 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
-							value={email}
+							value={user?.email}
 							readOnly
+							{...register("instructor_email", { required: true })}
 						/>
 					</div>
 
@@ -140,14 +121,14 @@ const AddInstructor = () => {
 						</label>
 						<input
 							type="number"
-							id="available_seats"
 							placeholder="Available Seats"
+							id="available_seats"
+							defaultValue={instructor?.available_seats}
 							className="shadow-md shadow-cyan-400 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
-							value={availableSeats}
-							onChange={(e) => setAvailableSeats(e.target.value)}
+							{...register("available_seats", { required: true })}
 						/>
 						{errors.available_seats && (
-							<span className="text-red-500">{errors.available_seats}</span>
+							<span className="text-red-500">Available Seats is required</span>
 						)}
 					</div>
 
@@ -157,22 +138,22 @@ const AddInstructor = () => {
 						</label>
 						<input
 							type="number"
+							placeholder="Price"
+							defaultValue={instructor?.price}
 							id="price"
 							className="shadow-md shadow-cyan-400 focus:outline-none block w-full rounded-md border border-gray-200 dark:border-gray-600 bg-transparent px-4 py-3 text-gray-600 transition duration-300 invalid:ring-2 invalid:ring-red-400 focus:ring-2 focus:ring-cyan-300"
-							value={price}
-							placeholder="Price"
-							onChange={(e) => setPrice(e.target.value)}
+							{...register("price", { required: true })}
 						/>
 						{errors.price && (
-							<span className="text-red-500">{errors.price}</span>
+							<span className="text-red-500">Price is required</span>
 						)}
 					</div>
 
 					<button
 						type="submit"
-						className=" rounded-full shadow-slate-400 shadow-lg bg-gray-600 text-white h-12 w-full font-serif font-semibold text-lg "
+						className=" rounded-full shadow-gray-400 shadow-lg bg-gray-600 text-white h-12 w-full font-serif font-semibold text-lg "
 					>
-						Add Instructor
+						Update
 					</button>
 				</form>
 			</div>
@@ -180,4 +161,4 @@ const AddInstructor = () => {
 	);
 };
 
-export default AddInstructor;
+export default Update;

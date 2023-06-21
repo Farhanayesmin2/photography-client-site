@@ -54,10 +54,10 @@ const InstructorClass = () => {
 	};
 
 	return (
-		<div className="w-full h-screen my-12">
+		<div className="w-full text-gray-600 h-screen my-12">
 			<p className="text-center my-5">
 				<Link
-					className="text-green-400 font-semibold text-2xl font-sherif"
+					className="text-cyan-400 font-semibold text-2xl font-mono"
 					to="/dashboard/addclass"
 				>
 					Instructor Class
@@ -65,7 +65,7 @@ const InstructorClass = () => {
 			</p>
 
 			<div className="">
-				<table className="table">
+				<table className="table text-gray-600">
 					{/* head of the table */}
 					<thead>
 						<tr>
@@ -133,7 +133,7 @@ const InstructorClass = () => {
 								<td>
 									<Link
 										to={`/dashboard/update/${instructor?._id}`}
-										className="btn bg-[#9d4edd] text-white hover:text-green-600"
+										className="btn text-white bg-gray-600 hover:bg-cyan-400 hover:text-gray-600"
 									>
 										Update
 									</Link>

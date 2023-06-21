@@ -18,6 +18,7 @@ import PaymentHistory from "../Pages/Dashboard/StudentDashboard/PaymentHistory/P
 import AdminRoute from "./AdminRoute/AdminRoute";
 import AddInstructor from "../Pages/Dashboard/InstructorDashboard/AddInstructor/AddInstructor";
 import InstructorClass from "../Pages/Dashboard/InstructorDashboard/InstructorClass/InstructorClass";
+import Update from "../Pages/Dashboard/InstructorDashboard/Update/Update";
 
 const router = createBrowserRouter([
 	{
@@ -99,6 +100,10 @@ const router = createBrowserRouter([
 			{
 				path: "instructorclass",
 				element: <InstructorClass></InstructorClass>,
+			},
+			{
+				path: "update/:id",
+				element: <Update></Update>,
 			},
 		],
 	},
