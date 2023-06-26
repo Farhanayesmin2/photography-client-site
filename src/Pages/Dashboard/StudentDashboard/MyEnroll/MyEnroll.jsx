@@ -5,13 +5,17 @@ import useAuth from "../../../../Hooks/useAuth";
 const MyEnroll = () => {
 	const [axiosSecure] = useAxiosSecure();
 	const { user } = useAuth();
+	console.log(user?.email);
 	const [enrollClass, setEnrolClass] = useState([]);
+	const decodedEmail = decodeURIComponent(user?.email);
+	console.log(decodedEmail);
 	useEffect(() => {
-		axiosSecure.get(`/paymentHistory?email=${user?.email}`).then((res) => {
+		axiosSecure.get(`/paymentHistory?email=${decodedEmail}`).then((res) => {
 			setEnrolClass(res.data);
 		});
 	}, []);
-
+	//?email=${user?.email}
+	console.log(enrollClass);
 	return (
 		<div className="w-full">
 			<div>
@@ -29,7 +33,7 @@ const MyEnroll = () => {
 						{enrollClass.map((enroll, index) => (
 							<tr
 								key={enroll._id}
-								className="hover:bg-green-300 hover:border-green-500"
+								className="hover:bg-cyan-300 hover:border-green-500"
 							>
 								<th>{index + 1}</th>
 								<td>

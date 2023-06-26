@@ -7,6 +7,7 @@ const PaymentHistory = () => {
 	const [axiosSecure] = useAxiosSecure();
 	const [payments, setPayment] = useState([]);
 	const { user } = useAuth();
+
 	console.log(user);
 	useEffect(() => {
 		axiosSecure.get(`/paymentHistory?email=${user?.email}`).then((res) => {
@@ -14,24 +15,25 @@ const PaymentHistory = () => {
 		});
 	}, []);
 
+	//?email=${user?.email}
 	return (
 		<div className="w-full my-5">
 			<h1 className="text-center text-2xl font-serif font-bold my-5 text-gray-800">
 				My Payment History
 			</h1>
 			<div className="overflow-x-auto">
-				<table className="table w-full border border-green-300">
+				<table className="table w-full border border-cyan-300">
 					<thead>
 						<tr>
-							<th className="py-3 px-4 bg-green-200 text-gray-600">No.</th>
-							<th className="py-3 px-4 bg-green-200 text-gray-600">
+							<th className="py-3 px-4 bg-cyan-200 text-gray-600">No.</th>
+							<th className="py-3 px-4 bg-cyan-200 text-gray-600">
 								Transaction Id
 							</th>
-							<th className="py-3 px-4 bg-green-200 text-gray-600">
+							<th className="py-3 px-4 bg-cyan-200 text-gray-600">
 								Class Name
 							</th>
-							<th className="py-3 px-4 bg-green-200 text-gray-600">Price</th>
-							<th className="py-3 px-4 bg-green-200 text-gray-600">Date</th>
+							<th className="py-3 px-4 bg-cyan-200 text-gray-600">Price</th>
+							<th className="py-3 px-4 bg-cyan-200 text-gray-600">Date</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -40,7 +42,7 @@ const PaymentHistory = () => {
 								key={payment._id}
 								className={`${
 									index % 2 === 0 ? "bg-gray-100" : ""
-								} hover:bg-gray-200 transition-colors duration-200`}
+								} hover:bg-cyan-200 transition-colors duration-200`}
 							>
 								<td className="py-2 px-4">{index + 1}</td>
 								<td className="py-2 px-4">{payment.transactionId}</td>

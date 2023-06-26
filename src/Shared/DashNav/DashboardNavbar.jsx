@@ -1,15 +1,17 @@
 import { useContext } from "react";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { AuthContext } from "../../Context/AuthContext";
-
+import useAuth from "../../Hooks/useAuth";
+import { BsFillCameraFill } from "react-icons/bs";
 const DashboardNavbar = () => {
-	const { user, logOut } = useContext(AuthContext);
+	const { logOut } = useContext(AuthContext);
+	const { user } = useAuth();
 	const location = useLocation();
 	const handleLogOut = () => {
 		logOut()
 			.then(() => {})
 			.catch((err) => console.log(err));
-		return <Navigate to="/" state={{ from: location }} replace></Navigate>;
+		return <Navigate to="/home" state={{ from: location }} replace></Navigate>;
 	};
 	const menuItems = (
 		<>
@@ -22,9 +24,7 @@ const DashboardNavbar = () => {
 			<li>
 				<Link to={"/blog"}>Blog</Link>
 			</li>
-			<li>
-				<Link to={"/contact-us"}>Contact Us</Link>
-			</li>
+
 			{user?.uid ? (
 				<>
 					<li>
@@ -42,7 +42,7 @@ const DashboardNavbar = () => {
 		</>
 	);
 	return (
-		<div className="navbar bg-base-100 text-green-600 text-xl font-serif font-semibold  ">
+		<div className="navbar bg-white shadow-sm shadow-cyan-400 border-b-1 border-gray-300 text-gray-600 text-xl font-serif font-semibold  ">
 			<div className="navbar-start">
 				<div className="dropdown">
 					<label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -68,8 +68,11 @@ const DashboardNavbar = () => {
 						{menuItems}
 					</ul>
 				</div>
-				<Link to={"/"} className="btn btn-ghost normal-case text-xl">
-					School Photography
+				<Link
+					to={"/"}
+					className="btn flex items-center btn-ghost normal-case text-xl"
+				>
+					<BsFillCameraFill></BsFillCameraFill> School Photography
 				</Link>
 			</div>
 			<div className="navbar-end hidden lg:flex">

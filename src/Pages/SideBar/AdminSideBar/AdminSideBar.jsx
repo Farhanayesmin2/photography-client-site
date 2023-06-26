@@ -1,13 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
-
 import { FaCartArrowDown, FaPeopleArrows, FaHome } from "react-icons/fa";
-import { useContext } from "react";
-
 import profile from "../../../assets/images (1) (1).jpeg";
-import { AuthContext } from "../../../Context/AuthContext";
+import useAuth from "../../../Hooks/useAuth";
 
 const AdminSideBar = () => {
-	const { user } = useContext(AuthContext);
+	const { user } = useAuth();
 
 	return (
 		<div>

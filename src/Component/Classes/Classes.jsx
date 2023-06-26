@@ -42,6 +42,7 @@ const Classes = () => {
 			instructorName: instructor.name,
 			image: instructor.image,
 			price: instructor.price,
+			class_id: instructor.class_id,
 		};
 		console.log(addSelectedData);
 		fetch("https://school-photography-server.vercel.app/myclass", {
@@ -91,6 +92,9 @@ const Classes = () => {
 							instructor.availableSeats === 0 ? "bg-red-500" : "bg-none"
 						}`}
 					>
+						<span className="text-gray-400 text-center">
+							{instructor.class_id}{" "}
+						</span>
 						<div className="container bg-white rounded dark:bg-gray-800 shadow-lg transform duration-200 easy-in-out ">
 							<div className="h-2/4 sm:h-64 overflow-hidden">
 								<img

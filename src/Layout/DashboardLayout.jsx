@@ -3,18 +3,16 @@ import { Outlet } from "react-router-dom";
 import DashboardNavbar from "../Shared/DashNav/DashboardNavbar";
 
 import useAdmin from "../Hooks/dashHooks/useAdmin";
+
+import useAuth from "../Hooks/useAuth";
 import AdminSideBar from "../Pages/SideBar/AdminSideBar/AdminSideBar";
 import InstructorSideBar from "../Pages/SideBar/InstructorSideBar/InstructorSideBar";
 import UserSideBar from "../Pages/SideBar/UserSideBar/UserSideBar";
-
-// import { useContext } from "react";
-// import { AuthContext } from "../Context/AuthContext";
-import useInstructors from "../Hooks/dashHooks/useInstructors";
-import useAuth from "../Hooks/useAuth";
+import useInstructor from "../Hooks/dashHooks/useInstructor";
 
 const DashboardLayout = () => {
 	const [isAdmin] = useAdmin();
-	const [isInstructor] = useInstructors();
+	const [isInstructor] = useInstructor();
 	const { user } = useAuth();
 	console.log(user);
 	return (
@@ -25,7 +23,7 @@ const DashboardLayout = () => {
 				<div className="drawer-content">
 					<Outlet></Outlet>
 				</div>
-				{isAdmin === "admin" && user && (
+				{isAdmin && user && (
 					<>
 						{" "}
 						<AdminSideBar></AdminSideBar>{" "}

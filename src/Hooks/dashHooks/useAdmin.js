@@ -2,7 +2,6 @@
 
 import { useQuery } from "@tanstack/react-query";
 import { useContext } from "react";
-
 import useAxiosSecure from "../UseAxiosSecure";
 import { AuthContext } from "../../Context/AuthContext";
 import useAuth from "../useAuth";
@@ -11,16 +10,16 @@ const useAdmin = () => {
 	const {loading } = useContext(AuthContext);
 	const { user } = useAuth();
 	console.log(user);
-	console.log("file: useAdmin.js:29 ~ useAdmin ~ user, loading:", user, loading, )
+	// console.log("file: useAdmin.js:29 ~ useAdmin ~ user, loading:", user, loading, )
 	const [axiosSecure] = useAxiosSecure();
 
 	const { data: isAdmin, isLoading: isAdminLoading } = useQuery({
 		queryKey: ["isAdmin"],
-		enabled: !loading && !!user,
+		enabled: !loading,
+		// !loading && !!user,
 		queryFn: async () => {
 			const res = await axiosSecure.get(`/users/admin/${user?.email}`);
-
-			return res.data.role;
+			return res.data.admin;
 		},
 	});
 

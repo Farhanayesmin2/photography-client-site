@@ -13,9 +13,9 @@ const CheckOutPayment = ({ payment }) => {
 		email,
 		price,
 		image,
-
 		availableSeats,
 		_id,
+		class_id,
 		className,
 		classImage,
 		instructorName,
@@ -85,6 +85,7 @@ const CheckOutPayment = ({ payment }) => {
 				transactionId: paymentIntent.id,
 				date: new Date(),
 				selectId: _id,
+				class_id,
 				useremail: user?.email,
 				instructorEmail: email,
 				availableSeats,
@@ -96,18 +97,20 @@ const CheckOutPayment = ({ payment }) => {
 				instructorName,
 			};
 			console.log(payment);
-			axiosSecure.post("/payments", payment).then((res) => {
-				console.log(res.data.insertedId);
-				if (res.data.insertedId) {
-					Swal.fire({
-						position: "top-center",
-						icon: "success",
-						title: "Your order has been successful",
-						showConfirmButton: false,
-						timer: 1500,
-					});
-				}
-			});
+			axiosSecure
+				.post(`/payments?class_id=${class_id}`, payment)
+				.then((res) => {
+					console.log(res.data.insertedId);
+					if (res.data.insertedId) {
+						Swal.fire({
+							position: "top-center",
+							icon: "success",
+							title: "Your order has been successful",
+							showConfirmButton: false,
+							timer: 1500,
+						});
+					}
+				});
 		}
 	};
 
